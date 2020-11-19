@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
+<link rel="icon" href="assets/favicon/camera.png" type="image/x-icon" />
+<link  rel="stylesheet" href="assets/css/main.css">
+<link  rel="stylesheet" href="assets/css/spinner.css">
+<title>SoftCamera</title>
+</head>
+<body > 
+    <div class="container">
+        <div class="container-fluid">
+            <div class="col-sm-3 col-md-2 nav navbar nav-pills nav-fill">
+                <div class="sidenav">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <a href="#">Shutter Timer</a>
+                    <a href="#">Timer</a>
+                    <a href="#">Settings</a>
+                    <a href="./about.html">About</a>
+                </div>
+                <div class="main">
+                    <span class="openNav" onclick="openNav()">&#9776; Menu</span>
+                </div> 
+            </div>
+            <div class="col-sm-3 col-md-3 sidebar">
+                <div class="both space">
+                    <p id="sec">sec</p>
+                    <ul class="nav nav-tabs">
+                        <li class="active spin"><a data-toggle="tab" href="#home">Pictures</a></li>
+                        <li><a data-toggle="tab" href="#menu1">Videos</a></li>
+                    </ul>
+
+                    <div class="tab-content clearfix">
+                        <div id="home" class="tab-pane fade in active">
+                            <h3>Picture Gallery </h3>
+                            <canvas class="canva"></canvas>
+                            <li>a</li>
+                          </div>
+                          
+                          <div id="menu1" class="tab-pane fade">
+                            <h3>Videos Gallery</h3>
+                            <li>Vdeo One</li>
+                            <li>Video Two</li>
+                            <li>Video Three</li>
+                            <li>Video Four</li>
+                          </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="section">
+                <video  class="video" height="500" width="400" controls="true" crossorigin="anonymous" autoplay></video>
+                <button type="button" class="btn btn-primary btn-lg xy mainButton"><i class="fas fa-video spinner"style="color:red"></i> Start Record</button>
+                <button type="button" class="btn btn-primary btn-lg xz mainButton" ><i class="fa fa-camera" aria-hidden="true"></i> End Record</button>
+                <button type="button" class="btn btn-primary btn-lg xx mainButton" ><i class="fa fa-camera " aria-hidden="true"></i> Snap Shot</button>
+            </div>
+        </div>
+    </div>    
+
+<script src="assets/controllers/controller1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
+
