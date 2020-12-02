@@ -4,12 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta name="Description" content="Enter your description here"/>
+<meta name="Description" content="CamApp"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
 <link rel="icon" href="assets/favicon/camera.png" type="image/x-icon" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <link  rel="stylesheet" href="assets/css/main.css">
 <link  rel="stylesheet" href="assets/css/spinner.css">
+<link  rel="stylesheet" href="assets/css/sliders.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
 <title>SoftCamera</title>
 </head>
 <body > 
@@ -19,6 +25,7 @@
                 <div class="sidenav">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                     <a href="#">Shutter Timer</a>
+                    <a href="./microphone.html">Microphone</a>
                     <a href="#">Timer</a>
                     <a href="#">Settings</a>
                     <a href="./about.html">About</a>
@@ -26,34 +33,93 @@
                 <div class="main">
                     <span class="openNav" onclick="openNav()">&#9776; Menu</span>
                 </div> 
+                <p id="sec">sec</p>
             </div>
+
             <div class="col-sm-3 col-md-3 sidebar">
-                <div class="both space">
-                    <p id="sec">sec</p>
+                <div class="row data">
+                    <div class="col-sm-6">
+                       <p class="numberofpic">Shot:<span class="col totalSnap">0</span></p> 
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="numberofvideos">Videos: <span class="col totalVideo">0</span></p>
+                    </div>
+                    <div class="col-sm-6">    
+                        <button class="open-modal" onclick="document.getElementById('id01').style.display='block'">Delete All</button>
+                        <div id="id01" class="modal">
+                        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+                            <form class="modal-content" action="/action_page.php">
+                                <div class="container">
+                                    <h1>Delete Account</h1>
+                                    <p>Are you sure you want to delete? </p>
+                                    <div class="input-group mb-3 row align">
+                                        <div class="input-group-prepend col-sm-6 ">
+                                          <div class="input-group-text">
+                                            <input type="checkbox" class="deletedpic" aria-label="Checkbox for following text input"> Pictures
+                                          </div>
+                                        </div>
+
+                                        <div class="input-group-prepend col-sm-6 checkVid">
+                                            <div class="input-group-text">
+                                              <input type="checkbox" class="deletedvid" aria-label="Checkbox for following text input"> Videos
+                                            </div>
+                                          </div>
+                                        
+                                        </div>
+                                    <div class="clearfix">
+                                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="deletebtn">Delete</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="both">
                     <ul class="nav nav-tabs">
                         <li class="active spin"><a data-toggle="tab" href="#home">Pictures</a></li>
                         <li><a data-toggle="tab" href="#menu1">Videos</a></li>
                     </ul>
 
                     <div class="tab-content clearfix">
-                        <div id="home" class="tab-pane fade in active">
-                            <h3>Picture Gallery </h3>
-                            <canvas class="canva"></canvas>
-                            <li>a</li>
-                          </div>
+                        <div id="home" class="tab-pane fade in active data-nav">
+                            <ul class="savedpic">
+                                <h3>Picture Gallery</h3>
+                                <li class="lipic">
+                                <a class="delete" title="Delete" data-toggle="tooltip" ><i class="fas fa-trash" style="color:red">&#xE872;</i></a>
+                               <a class="download" title="Download" data-toggle="tooltip"><i class="fas fa-download" style="color: green"></i></a>
+                                </li>
+                                <!--<canvas class="canva"></canvas>-->
+                               
+                               
+                                    <div class="dropdown">
+                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-share-alt"></i>Share</a>
+                                    <div class="dropdown-menu drop" aria-labelledby="dropdownMenuLink" >
+                                      <a class="dropdown-item" href="#"><i class="fab fa-instagram"></i>Instagram</a><br>
+                                      <a class="dropdown-item" href="#"><i class="fab fa-twitter"></i>twitter</a><br>
+                                      <a class="dropdown-item" href="#"><i class="fab fa-facebook-f"></i>Facebook</a>
+                                    </div>
+                                    </div>
+                               
+                               
+                               
+                               <!-- Display Saved Photos -->
+                            </ul> 
+                        </div>
                           
                           <div id="menu1" class="tab-pane fade">
-                            <h3>Videos Gallery</h3>
-                            <li>Vdeo One</li>
-                            <li>Video Two</li>
-                            <li>Video Three</li>
-                            <li>Video Four</li>
+                                <ul class="savedvideo">
+                                    <h3>Video Gallery </h3>
+                                    <!--<canvas class="canva"></canvas>-->
+                                    <!-- Display Saved Videos -->
+                                </ul>
                           </div>
                     </div>
                 </div>
             </div>
-            
-            
+        
             <div class="section">
                 <video  class="video" height="500" width="400" controls="true" crossorigin="anonymous" autoplay></video>
                 <button type="button" class="btn btn-primary btn-lg xy mainButton"><i class="fas fa-video spinner"style="color:red"></i> Start Record</button>
@@ -64,6 +130,10 @@
     </div>    
 
 <script src="assets/controllers/controller1.js"></script>
+<script src="assets/main.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
