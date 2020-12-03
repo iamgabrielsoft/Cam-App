@@ -1,8 +1,4 @@
 
-var red = document.querySelector('.delete')
-var download = document.querySelector('.download')
-var lipic = document.querySelector('.lipic')
-
 const openNav = () => {
     document.querySelector(".sidenav").style.width = "250px";
     document.querySelector(".main").style.marginLeft = "250px"
@@ -75,20 +71,16 @@ $('.open-modal').click((event) => {
 
 
 
-function ConvertTheCanva () {
+function ConvertTheCanva (arr = []) {
 
-    // var canvas = document.createElement('canvas');
-    // var liPic = document.createElement('liPic');
-    // canvas.setAttribute('class', 'imagecanvas');
-    // liPic.setAttribute('class', 'lipic')
+    var canvas = document.createElement('canvas');
+    var liPic = document.createElement('liPic');
+    canvas.setAttribute('class', 'imagecanvas');
+    liPic.setAttribute('class', 'lipic')
 
-    const tag = $('.lipic').appendTo(red); 
-    $('.lipic').appendTo(download); 
-    $('.savedpic').appendTo(tag)
-    
 
-    snapdb.push(video); 
-    /*snapdb.forEach((pic) => {
+    schema(video)
+    snapdb.forEach((pic) => {
         liPic.innerHTML = `
         <div class="dropdown dropdown-class">
             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -101,23 +93,48 @@ function ConvertTheCanva () {
                     <a class="dropdown-item" href="#"><i class="fab fa-facebook-f"></i>Facebook</a>
             </div>
         </div>
-        <a id ="deleteachpic" class="delete" title="Delete" data-toggle="tooltip" ><i class="fas fa-trash deleteachpic">&#xE872;</i></a>
-        <a class="download" title="Delete" data-toggle="tooltip" ><i class="fas fa-download" ">&#xE872;</i></a>
+        <a id ="deleteachpic" class="deletecanvas" title="Delete" data-toggle="tooltip" ><i class="fas fa-trash deleteachpic">&#xE872;</i></a>
+        <a class="downloadcanvas" title="Delete" data-toggle="tooltip" ><i class="fas fa-download" ">&#xE872;</i></a>
         `; 
-       ulPic.appendChild(liPic); 
-       ulPic.appendChild(canvas); 
-       ctx = canvas.getContext('2d'); 
-       ctx.drawImage(pic, 0, 0, 100, 110);
 
-    })*/
+        ulPic.appendChild(liPic); 
+        ulPic.appendChild(canvas)
+        ctx = canvas.getContext('2d'); 
+        ctx.drawImage(pic, 0, 0, 100, 110); 
+        
+    })
 
-    $('.delete').click(() => { console.log('Hello')}); 
     
+
+    //delete Each  canvas 
+
+    document.querySelectorAll('.deletecanvas').forEach((dart) => {
+        dart.addEventListener('click', (element) => {
+            deletecanvas(element?.target); 
+            console.log('deleted')
+
+        })
+    })
+
+    
+
+
+    $('.downloadcanvas').click(() => {
+
+        download(); 
+    })
 }
 
 
-const manipulate = ConvertTheCanva.prototype.manipulate = () => {
-    //document.createElement('canvas')
+const deletecanvas = ConvertTheCanva.prototype.delete = (element) => {
+    console.log(element) 
+    snapdb = snapdb.filter((value) => { console.log(value)})
+    // schema(video); 
 }
 
-manipulate();
+
+
+
+const download  = ConvertTheCanva.prototype.download = () => {
+    console.log('Canvas downloaded'); 
+}

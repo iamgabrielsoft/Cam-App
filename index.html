@@ -45,7 +45,7 @@
                         <p class="numberofvideos">Videos: <span class="col totalVideo">0</span></p>
                     </div>
                     <div class="col-sm-6">    
-                        <button class="open-modal" onclick="document.getElementById('id01').style.display='block'">Delete All</button>
+                        <button class="open-model" onclick="document.getElementById('id01').style.display='block'">Delete All</button>
                         <div id="id01" class="modal">
                         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
                             <form class="modal-content" action="/action_page.php">
@@ -66,9 +66,10 @@
                                           </div>
                                         
                                         </div>
+                                    
                                     <div class="clearfix">
                                         <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="deletebtn">Delete</button>
+                                        <button class="deletebtn" type="button" onclick="document.getElementById('id01').style.display='none'" class="deletebtn">Delete</button>
                                     </div>
                                 </div>
                             </form>
@@ -87,13 +88,10 @@
                         <div id="home" class="tab-pane fade in active data-nav">
                             <ul class="savedpic">
                                 <h3>Picture Gallery</h3>
-                                <li class="lipic">
-                                <a class="delete" title="Delete" data-toggle="tooltip" ><i class="fas fa-trash" style="color:red">&#xE872;</i></a>
-                               <a class="download" title="Download" data-toggle="tooltip"><i class="fas fa-download" style="color: green"></i></a>
-                                </li>
                                 <!--<canvas class="canva"></canvas>-->
-                               
-                               
+                               <!--<a class="delete" title="Delete" data-toggle="tooltip" ><i class="fas fa-trash" style="color:red">&#xE872;</i></a>--> 
+                                <!--<a class="download" title="Download" data-toggle="tooltip"><i class="fas fa-download" style="color: green"></i></a>-->    
+                               <!--
                                     <div class="dropdown">
                                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-share-alt"></i>Share</a>
                                     <div class="dropdown-menu drop" aria-labelledby="dropdownMenuLink" >
@@ -101,8 +99,8 @@
                                       <a class="dropdown-item" href="#"><i class="fab fa-twitter"></i>twitter</a><br>
                                       <a class="dropdown-item" href="#"><i class="fab fa-facebook-f"></i>Facebook</a>
                                     </div>
-                                    </div>
-                               
+                                </div>
+                               -->
                                
                                
                                <!-- Display Saved Photos -->

@@ -69,34 +69,48 @@ const countDown = RecordFunc.prototype.recordCountDown = (videoLimit) => {
 }
 
 
+const schema  = (video) => {
+    const appSchema = {
+        id: Date.now(),
+        video
+    }
+
+    snapdb.push(appSchema)
+    // ConvertTheCanva(snapdb); 
+
+}
+
+
 const videoFunc = RecordFunc.prototype.videoFunc = () => {
     const capture = document.querySelectorAll('.xx').forEach((snap) =>{
         snap.addEventListener('click', (element) => {
-            duplicate(); 
+            //duplicate(); 
+            schema(snapdb)
+            //ConvertTheCanva(snapdb)
             getTotal.snap()
-            console.log(element?.target)
+            // console.log(element?.target)
         })
     })
 
     const record = document.querySelectorAll('.xy').forEach((vid) => {
         vid.addEventListener('click', (element) => {
-            console.log('Recording Started')
+            // console.log('Recording Started')
             countDown(500); 
         })
     })
 
 }
 
-videoFunc()
+videoFunc(); 
+
+
 
 
 const duplicate = () => {
-    
-    ConvertTheCanva();
-    // ConvertTheCanva.create(); 
 
+    ConvertTheCanva(snapdb); 
 
-    const onScreen = {
+    /*const onScreen = {
         Imageviwes: () => {
             const row = document.createElement('row')
             const columns = document.createElement('colum')
@@ -139,10 +153,9 @@ const duplicate = () => {
            modalContent.appendChild(caption)
            caption.appendChild(p); 
         }, 
-    }
+    }*/
 
-
-    onScreen.Imageviwes(); 
+    // onScreen.Imageviwes(); 
 }
 
 

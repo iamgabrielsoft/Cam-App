@@ -94,13 +94,13 @@ body {
     margin-top: 20px;
   }
 
-  .delete, .download {
+  .deletecanvas, .downloadcanvas {
     cursor: pointer;
     margin-left: -50px;
     margin-right: 40px;
   }
 
-  .delete {
+  .deletecanvas {
     color: red;
   }
 
@@ -108,7 +108,7 @@ body {
     color: green;
   }
 
-  .delete:hover {
+  .deletecanvas:hover {
     color: red;
     transition: 0.3s;
   }
