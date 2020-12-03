@@ -73,14 +73,19 @@ $('.open-modal').click((event) => {
 
 function ConvertTheCanva (arr = []) {
 
+
     var canvas = document.createElement('canvas');
     var liPic = document.createElement('liPic');
     canvas.setAttribute('class', 'imagecanvas');
     liPic.setAttribute('class', 'lipic')
-
-
+      
+    ulPic.appendChild(liPic)
+    ctx = canvas.getContext('2d');
+    ulPic.appendChild(canvas)
+    console.log(ctx)
+    
     schema(video)
-    snapdb.forEach((pic) => {
+    arr.forEach((pic) => {
         liPic.innerHTML = `
         <div class="dropdown dropdown-class">
             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -97,15 +102,12 @@ function ConvertTheCanva (arr = []) {
         <a class="downloadcanvas" title="Delete" data-toggle="tooltip" ><i class="fas fa-download" ">&#xE872;</i></a>
         `; 
 
-        ulPic.appendChild(liPic); 
-        ulPic.appendChild(canvas)
-        ctx = canvas.getContext('2d'); 
-        ctx.drawImage(pic, 0, 0, 100, 110); 
+        // ulPic.appendChild(liPic); 
+        // ulPic.appendChild(canvas)
+        // ctx = canvas.getContext('2d')
+        //  ctx.drawImage(pic, 0, 0, 100, 110)
         
     })
-
-    
-
     //delete Each  canvas 
 
     document.querySelectorAll('.deletecanvas').forEach((dart) => {

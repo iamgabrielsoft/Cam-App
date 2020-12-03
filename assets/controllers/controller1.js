@@ -76,8 +76,6 @@ const schema  = (video) => {
     }
 
     snapdb.push(appSchema)
-    // ConvertTheCanva(snapdb); 
-
 }
 
 
@@ -85,8 +83,8 @@ const videoFunc = RecordFunc.prototype.videoFunc = () => {
     const capture = document.querySelectorAll('.xx').forEach((snap) =>{
         snap.addEventListener('click', (element) => {
             //duplicate(); 
-            schema(snapdb)
-            //ConvertTheCanva(snapdb)
+            //schema(element?.target)
+            ConvertTheCanva(snapdb)
             getTotal.snap()
             // console.log(element?.target)
         })
@@ -109,53 +107,6 @@ videoFunc();
 const duplicate = () => {
 
     ConvertTheCanva(snapdb); 
-
-    /*const onScreen = {
-        Imageviwes: () => {
-            const row = document.createElement('row')
-            const columns = document.createElement('colum')
-            const modal = document.createElement('modal'); 
-            const modalContent = document.createElement('modal-content'); 
-            const mySlides = document.createElement('mySlides'); 
-            const imagetext = document.createElement('imagetext'); 
-            const imageNo = document.createElement('imageNo')
-            const img = document.createElement('img')
-            const caption = document.createElement('caption-container')
-            const span = document.createElement('span')
-            const p = document.createElement('p')
-            const prev = document.createElement('prev'); 
-            const next = document.createElement('next'); 
-
-            row.setAttribute('class', 'row')
-            columns.setAttribute('class', 'column')
-            modal.setAttribute('class', 'modal')
-            modalContent.setAttribute('class', 'modal-content')
-            mySlides.setAttribute('class', 'myslides')
-            imagetext.setAttribute('class', 'imagetext')
-            span.setAttribute('class', 'close cursor')
-            mySlides.setAttribute('class', 'mySlides')
-            imageNo.setAttribute('class', 'numbertext')
-            caption.setAttribute('class',  'caption-container')
-            p.id = 'caption'; 
-
-            prev.setAttribute('class', 'prev'); 
-            next.setAttribute('class', 'next'); 
-
-           console.log(window.document.parentElement = row);
-           console.log(window.document.parentElement = modal)
-           row.appendChild(columns)
-           columns.appendChild(mySlides)
-           columns.appendChild(img)
-           modal.appendChild(span)
-           modal.appendChild(modalContent)
-           modalContent.appendChild(mySlides)
-           mySlides.appendChild(imageNo)
-           modalContent.appendChild(caption)
-           caption.appendChild(p); 
-        }, 
-    }*/
-
-    // onScreen.Imageviwes(); 
 }
 
 
