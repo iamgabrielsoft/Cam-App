@@ -16,9 +16,22 @@
 <link  rel="stylesheet" href="assets/css/spinner.css">
 <link  rel="stylesheet" href="assets/css/sliders.css">
 <link rel="stylesheet" href="assets/css/responsive.css">
+<link rel="stylesheet" href="assets/css/alert.jquery.css">
 <title>SoftCamera</title>
 </head>
-<body > 
+<body>
+    <div class="popup-overlay">
+        <!--Creates the popup content-->
+        <div class="popup-content">
+          <p> This is an example pop-up that you can make using jQuery.</p>
+          <!--popup's close button-->
+          <button class="close">Close</button>
+      </div>
+      <!--Content shown when popup is not displayed-->
+      <h2 class="data">jQuery Pop-Up Example</h2>
+      <button class="open">Close</button> 
+    </div>
+      
     <div class="container">
         <div class="container-fluid">
             <div class="col-sm-3 col-md-2 nav navbar nav-pills nav-fill">
@@ -103,6 +116,7 @@
                                 </div>
                                -->
                                
+                               
                                <i class="fas fa-image"></i>
                                
                                
@@ -133,9 +147,10 @@
 
 <script src="assets/controllers/controller1.js"></script>
 <script src="assets/main.js"></script>
+<script src="assets/js/alert.jquery.js"></script>
+<script src="assets/js/alert.jquery.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>

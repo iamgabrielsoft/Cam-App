@@ -69,24 +69,22 @@ const countDown = RecordFunc.prototype.recordCountDown = (videoLimit) => {
 }
 
 
-const schema  = (video) => {
+const schema  = (video, videoName) => {
     const appSchema = {
         id: Date.now(),
-        video
+        video,
+        videoName
     }
 
-    snapdb.push(appSchema)
+    snapdb.push(appSchema);
 }
 
 
 const videoFunc = RecordFunc.prototype.videoFunc = () => {
     const capture = document.querySelectorAll('.xx').forEach((snap) =>{
         snap.addEventListener('click', (element) => {
-            //duplicate(); 
-            //schema(element?.target)
             ConvertTheCanva(snapdb)
             getTotal.snap()
-            // console.log(element?.target)
         })
     })
 
@@ -105,8 +103,7 @@ videoFunc();
 
 
 const duplicate = () => {
-
-    ConvertTheCanva(snapdb); 
+   ConvertTheCanva(snapdb);
 }
 
 

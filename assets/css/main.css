@@ -108,7 +108,7 @@ body {
     color: green;
   }
 
-  .deletecanvas:hover {
+  .deletecanvas:hover { 
     color: red;
     transition: 0.3s;
   }
@@ -223,13 +223,6 @@ body {
     display: inline-flex; 
   }
 
-
-  .deletebtn {
-    
-  }
-
- 
-
   canvas  {
     margin-left: -40px; 
     margin-top: 30px;
@@ -244,4 +237,64 @@ body {
     display: inline-block;
    margin-left: -50px;
    margin-right: 40px;
+  }
+
+  .saveinput {
+    width: 100px;
+    margin-left: -50px;
+    margin-right: 10px;
+
+  }
+
+  .savebtn {
+    width: 60px;
+    margin-bottom: 100px;
+    font-size: 12px;
+    padding-inline-end: 20px;
+    border-radius: 30px;
+  }
+
+
+  .popup-overlay {
+    /*Hides pop-up when there is no "active" class*/
+    visibility: hidden;
+    position: absolute;
+    background: #ffffff;
+    border: 3px solid #666666;
+    width: 40%;
+    left: 25%;
+    right: 70%;
+  }
+  
+  .popup-overlay.active {
+    /*displays pop-up when "active" class is present*/
+    visibility: visible;
+    text-align: center;
+  }
+  
+  .popup-content {
+    /*Hides pop-up content when there is no "active" class */
+    visibility: hidden;
+  }
+  
+  .popup-content.active {
+    /*Shows pop-up content when "active" class is present */
+    visibility: visible;
+  }
+  
+  button {
+    display: inline-block;
+    vertical-align: middle;
+    
+    margin: .20rem;
+    font-size: 1rem;
+    color: #666666;
+    background: #ffffff;
+    border: 1px solid #666666;
+  }
+  
+  button:hover {
+    border: 1px solid #666666;
+    background: #666666;
+    color: #ffffff;
   }
