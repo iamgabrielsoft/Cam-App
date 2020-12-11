@@ -180,20 +180,19 @@ body {
   }
    
   /* The Modal Close Button (x) */
-  .close {
-    position: absolute;
-    right: 35px;
-    top: 15px;
-    font-size: 40px;
-    font-weight: bold;
-    color: #f1f1f1;
+
+  .notify {
+    width: 50px;
+    border-radius: 30px;
+    background-color: crimson
   }
-  
-  .close:hover,
-  .close:focus {
-    color: #f44336;
-    cursor: pointer;
+
+  .notify:hover {
+    background-attachment: fixed;
+    background-color: crimson
   }
+
+
   
   /* Clear floats */
   .clearfix::after {
@@ -239,18 +238,17 @@ body {
    margin-right: 40px;
   }
 
-  .saveinput {
+  .nameImage {
     width: 100px;
-    margin-left: -50px;
-    margin-right: 10px;
+    margin-left: -30px;
+    margin-right: 70px;
 
   }
 
   .savebtn {
-    width: 60px;
-    margin-bottom: 100px;
-    font-size: 12px;
-    padding-inline-end: 20px;
+    width: 50px;
+    margin-top: -90px;
+    float: right;
     border-radius: 30px;
   }
 
@@ -258,12 +256,12 @@ body {
   .popup-overlay {
     /*Hides pop-up when there is no "active" class*/
     visibility: hidden;
-    position: absolute;
-    background: #ffffff;
-    border: 3px solid #666666;
+    position: fixed; 
+    border-radius: 30px;
     width: 40%;
     left: 25%;
     right: 70%;
+    background-color: lightgreen
   }
   
   .popup-overlay.active {

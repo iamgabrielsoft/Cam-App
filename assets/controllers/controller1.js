@@ -12,6 +12,8 @@ const shareBtn = document.querySelector('.dropdown')
 const numberofpic = document.querySelector('.numberofpic');
 const totalsnap = document.querySelector('.totalSnap')
 const totalvideo = document.querySelector('.totalVideo')
+const displayFile = document.querySelector('.display'); 
+
 
 
 const constraint = {

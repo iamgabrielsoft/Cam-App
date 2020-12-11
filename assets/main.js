@@ -1,5 +1,6 @@
 
 
+
 const openNav = () => {
     document.querySelector(".sidenav").style.width = "250px";
     document.querySelector(".main").style.marginLeft = "250px"
@@ -83,14 +84,18 @@ function ConvertTheCanva (arr = []) {
     liPic.setAttribute('class', 'lipic')
     savebtn.setAttribute('class', 'savebtn')
     savebtn.setAttribute('id', 'trigger')
-    saveinput.setAttribute('class', 'saveinput')
+    saveinput.setAttribute('class', 'nameImage')
 
-    
     ulPic.appendChild(liPic)
     ulPic.appendChild(canvas); 
     ctx = canvas.getContext('2d');
     ctx.drawImage(video, 0, 0, 100, 110); 
     schema(video, saveinput.value);
+
+    saveinput.innerHTML = `
+        <input type="text" class="form-control nameImage" aria-describedby="emailHelp">
+        <small class="form-text text-muted">Name Your Picture</small>`
+
 
     savebtn.innerHTML = `<a class="download" title="Download" data-toggle="tooltip"><i class="fas fa-download" style="color: green"></i></a>`
     arr.forEach((pic) => {
@@ -112,36 +117,53 @@ function ConvertTheCanva (arr = []) {
     })
 
 
-    snapdb.forEach((value, index) => {
-        console.log(value.id, index); 
+    snapdb.forEach((value) => {
         $('.savedpic').each((data) => {
-            console.log('hit', value.id, data); 
-
         }).append(saveinput, savebtn).each((value) => {
             $('.savebtn').click(() => {
-                    $(".popup-overlay, .popup-content").addClass("active"); 
-                    
+                    $(".popup-overlay, .popup-content").addClass("active")
                     $('.close, .popup-overlay').on('click', () => {
                         $('.popup-overlay, .popup-content').removeClass('active')
                     })
 
+                    setTimeout(() => {
+                        $('.popup-overlay, .popup-content').removeClass('active')
+                    }, 5000);
+                
+
+                    const promise = new Promise((resolve, reject) => {
+                        canvas.toBlob((data) => {
+                            a = document.createElement('a')
+                            a.href = URL.createObjectURL(data);        
+                            a.download = saveinput.value 
+                            a.click(); 
+                            URL.revokeObjectURL(a.href); 
+                            resolve(data)
+                             
+                              
+                            
+                        }, 'image/png', 2.9) 
+                    })
+
+                    promise.then((datalink) => {
+
+                    })
+                    
+                    //process the image when downloaded
+                    //downloadFunc(snapdb[0], saveinput.value)
             })
         })
     })
 
+    //french montana - famous  
+    //nf 
+    //eminem - stan
 
 
     //delete Each  canvas 
     document.querySelectorAll('.deletecanvas').forEach((del) => {
         del.addEventListener('click', (element) => {
             deletecanvas(element?.target); //delete func
-        })
-    })
-
-
-    document.querySelectorAll('.downloadcanvas').forEach((download) => {
-        download.addEventListener('click', () => {
-            downloadFunc(saveinput)
         })
     })
 }
@@ -155,27 +177,4 @@ const deletecanvas = (element) => {
     })
 
     //ConvertTheCanva(snapdb) //duplicating the image
-}
-
-
-
-
-const downloadFunc  = ConvertTheCanva.prototype.downloadFunc = (filename) => { 
-    const image = new Image(); 
-    console.log(filename); 
-    // const blob = new Blob([image],  {type: jpg});
-    // url = window.URL.createObjectURL(blob); 
-    // console.log(blob)
-    
-    // const image = new Image(300, 400); 
-    // console.log(image.src = snapdb[0]); 
-
-    // blob = new Blob([image], {type: MimeType}); 
-    // url = window.URL.createObjectURL(blob);
-    // a = document.querySelector('.downloadcanvas'); 
-    // //document.body.appendChild(a); 
-    // a.href = url; 
-    // a.download = snapdb[0].video; 
-    // a.click(); 
-    // window.URL.revokeObjectURL(url); 
 }
