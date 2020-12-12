@@ -1,6 +1,5 @@
 
 
-
 const openNav = () => {
     document.querySelector(".sidenav").style.width = "250px";
     document.querySelector(".main").style.marginLeft = "250px"
@@ -74,7 +73,7 @@ const getTotal = {
 
 
 
-function ConvertTheCanva (arr = []) {
+async function ConvertTheCanva (arr = []) {
 
     var canvas = document.createElement('canvas');
     var savebtn = document.createElement('button'); 
@@ -89,25 +88,25 @@ function ConvertTheCanva (arr = []) {
     ulPic.appendChild(liPic)
     ulPic.appendChild(canvas); 
     ctx = canvas.getContext('2d');
-    ctx.drawImage(video, 0, 0, 100, 110); 
+    y = ctx.drawImage(video, 0, 0, 100, 110); 
+    
+    
     schema(video, saveinput.value);
 
     saveinput.innerHTML = `
-        <input type="text" class="form-control nameImage" aria-describedby="emailHelp">
-        <small class="form-text text-muted">Name Your Picture</small>`
+        <input type="text" class="form-control nameImage" aria-describedby="emailHelp">`
 
 
     savebtn.innerHTML = `<a class="download" title="Download" data-toggle="tooltip"><i class="fas fa-download" style="color: green"></i></a>`
     arr.forEach((pic) => {
         liPic.innerHTML = `
-        <div class="dropdown dropdown-class">
+        <div class="dropdown dropdown-class sharebtn">
             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-share-alt"></i>
-                    Share
+                <i class="fas fa-share-alt"></i> Share
             </a>
             <div class="dropdown-menu drop" aria-labelledby="dropdownMenuLink" >
-                    <a class="dropdown-item" href="#"><i class="fab fa-instagram"></i>Instagram</a><br>
-                    <a class="dropdown-item" href="#"><i class="fab fa-twitter"></i>twitter</a><br>
+                    <a class="dropdown-item " href="#"><i class="fab fa-instagram"></i>Instagram</a><br>
+                    <a class="dropdown-item twitter" href="#"><i class="fab fa-twitter"></i>twitter</a><br>
                     <a class="dropdown-item" href="#"><i class="fab fa-facebook-f"></i>Facebook</a>
             </div>
         </div>
@@ -116,6 +115,27 @@ function ConvertTheCanva (arr = []) {
         `
     })
 
+
+    $('.twitter').click(() => {
+        const UrlBlob = (dataurl) => { 
+            const img = new Image(400, 300); 
+            x = img.src = dataurl; 
+            console.log(x)
+        }
+        
+        var datalink = $('.twitter').attr('href', `https://twitter.com/share?text=${UrlBlob(y)}`); 
+        $('.twitter').attr('target', datalink); 
+
+        //UrlBlob(y)
+        
+
+        // const process =  () => {
+        //     var img = canvas.toDataURL(); 
+        //     file = UrlBlob(img); 
+        //     const data = new FormData();
+        //     x = data.append(snapdb, file,  'image/png')
+
+    })
 
     snapdb.forEach((value) => {
         $('.savedpic').each((data) => {
@@ -135,18 +155,25 @@ function ConvertTheCanva (arr = []) {
                         canvas.toBlob((data) => {
                             a = document.createElement('a')
                             a.href = URL.createObjectURL(data);        
-                            a.download = saveinput.value 
-                            a.click(); 
-                            URL.revokeObjectURL(a.href); 
-                            resolve(data)
-                             
-                              
+                        
+                            if(saveinput.value.length == " ") {
+                                console.log('empty field'); //notify the user on the input field 
+                                //throw in spinner
+
+                                //reject(data); 
+                                
+                            }else {
+                                a.download = saveinput.value 
+                                a.click(); 
+                                URL.revokeObjectURL(a.href); 
+                                resolve(data); 
+                            }
                             
                         }, 'image/png', 2.9) 
                     })
 
                     promise.then((datalink) => {
-
+                        console.log(datalink)
                     })
                     
                     //process the image when downloaded
