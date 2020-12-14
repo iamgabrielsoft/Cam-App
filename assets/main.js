@@ -24,18 +24,14 @@ const getTotal = {
     }, 
 
     record: () => {
+
         for(let i = 0; i<= vddb.length; i++)
         {
             if(vddb[i] == null) {
                 totalvideo.innerHTML = i; 
                 $('.deletedvid').click(() => {
                     console.log('Your About to delete Videos')
-                    
-
-
-                        // vddb = []; 
-                        // totalvideo.innerHTML = i = 0; 
-                        // ulVid.innerHTML = ' ' + '<h3>Video Gallery<h3>';
+                    //delete the video
 
                 }) 
             } 
@@ -88,13 +84,11 @@ async function ConvertTheCanva (arr = []) {
     ulPic.appendChild(liPic)
     ulPic.appendChild(canvas); 
     ctx = canvas.getContext('2d');
-    y = ctx.drawImage(video, 0, 0, 100, 110); 
-    
+    ctx.drawImage(video, 0, 0, 100, 110);
     
     schema(video, saveinput.value);
 
-    saveinput.innerHTML = `
-        <input type="text" class="form-control nameImage" aria-describedby="emailHelp">`
+    saveinput.innerHTML = `<input type="text" class="form-control nameImage" aria-describedby="emailHelp">`
 
 
     savebtn.innerHTML = `<a class="download" title="Download" data-toggle="tooltip"><i class="fas fa-download" style="color: green"></i></a>`
@@ -105,9 +99,8 @@ async function ConvertTheCanva (arr = []) {
                 <i class="fas fa-share-alt"></i> Share
             </a>
             <div class="dropdown-menu drop" aria-labelledby="dropdownMenuLink" >
-                    <a class="dropdown-item " href="#"><i class="fab fa-instagram"></i>Instagram</a><br>
                     <a class="dropdown-item twitter" href="#"><i class="fab fa-twitter"></i>twitter</a><br>
-                    <a class="dropdown-item" href="#"><i class="fab fa-facebook-f"></i>Facebook</a>
+                    <a class="dropdown-item facebook" href="#"><i class="fab fa-facebook-f"></i>Facebook</a>
             </div>
         </div>
         <a id ="${pic.id}" class="deletecanvas" title="Delete" data-toggle="tooltip" ><i class="fas fa-trash deleteachpic">&#xE872;</i></a>
@@ -115,29 +108,33 @@ async function ConvertTheCanva (arr = []) {
         `
     })
 
+    
+    //posting the canvass to twitter
+
+    const post = {
+        twitt : (dataurl) => {
+            x = dataurl.toDataURL('image/png', 0.9); 
+            console.log(x)
+            var datalink = $('.twitter').attr('href', `https://twitter.com/share?text=${x}`);  //place the image on the twitter post 
+            $('.twitter').attr('target', datalink);
+        }, 
+
+        fb : (dbpost) => {
+            //process canvas posting
+            console.log(dbpost)
+        }
+    }
 
     $('.twitter').click(() => {
-        const UrlBlob = (dataurl) => { 
-            const img = new Image(400, 300); 
-            x = img.src = dataurl; 
-            console.log(x)
-        }
-        
-        var datalink = $('.twitter').attr('href', `https://twitter.com/share?text=${UrlBlob(y)}`); 
-        $('.twitter').attr('target', datalink); 
-
-        //UrlBlob(y)
-        
-
-        // const process =  () => {
-        //     var img = canvas.toDataURL(); 
-        //     file = UrlBlob(img); 
-        //     const data = new FormData();
-        //     x = data.append(snapdb, file,  'image/png')
-
+       post.twitt(canvas); //post the canvas image to twitter
     })
 
-    snapdb.forEach((value) => {
+    $('.facebook').click(() => {
+        post.fb(canvas)
+    })
+
+
+
         $('.savedpic').each((data) => {
         }).append(saveinput, savebtn).each((value) => {
             $('.savebtn').click(() => {
@@ -175,16 +172,8 @@ async function ConvertTheCanva (arr = []) {
                     promise.then((datalink) => {
                         console.log(datalink)
                     })
-                    
-                    //process the image when downloaded
-                    //downloadFunc(snapdb[0], saveinput.value)
             })
         })
-    })
-
-    //french montana - famous  
-    //nf 
-    //eminem - stan
 
 
     //delete Each  canvas 
