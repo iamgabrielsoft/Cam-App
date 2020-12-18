@@ -1,50 +1,69 @@
+var data = [];
 
-import Swiper from 'swiper' 
-import 'swiper/swiper-bundle'; 
-import Swiper, {Navigation, Pagination} from 'swiper'; 
-Swiper.use([Navigation, Pagination]); 
-
-
-const swiper = new Swiper('.swiper-container', {
-    direction: 'vertical', 
-    loop: true, 
-
-    pagination: {
-        el: '.swiper-pagination'
-    }, 
-
-    navigation: {
-        nextEl: '.swiper-button-next', 
-        prevEl: '.swiper-button-prev'
-    }, 
-
-    scrollbar: {
-        el: '.swiper-scrollbar'
+class DisplayVideo{
+    constructor(vidName, vidLimit) {
+        this.vidName = vidName, 
+        this.vidLimit = vidLimit
     }
-})
 
+    get() {
+        this.vidName; 
+    }
 
+    set()  {
+        this.vidLimit
+    }
 
-var html = `
-    <div class="swiper-container">
-        <!-- Additional required wrapper -->
-        <div class="swiper-wrapper">
-            <!-- Slides -->
-            <div class="swiper-slide">Slide 1</div>
-            <div class="swiper-slide">Slide 2</div>
-            <div class="swiper-slide">Slide 3</div>
-            ...
-        </div>
-        <!-- If we need pagination -->
-        <div class="swiper-pagination"></div>
+    wait() {
+        return new Promise(resolve => setTimeout(() => {resolve}, this.vidLimit))
+    }
 
-        <!-- If we need navigation buttons -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
+    startRecord(stream) {
 
-        <!-- If we need scrollbar -->
-        <div class="swiper-scrollbar"></div>
-    </div>
-`
+        var options = {
+            audioBitsPerSecond : 128000,
+            videoBitsPerSecond : 2500000,
+            mimeType : 'video/mp4', 
+            // x: () => {
+            //     return console.log(stream.captureStream(), this.vidLimit)
+            // }
+        }
 
-console.log(html)
+        const recorder = new MediaStreamRecorder(constraint, options)
+        recorder.ondataavailable = event => data.push(event.data)
+
+        let stopped = new Promise((resolve, reject) => {
+            recorder.onstop = resolve; 
+            recorder.onerror = event => reject(event.name)
+        })
+
+        let recorded = this.wait().then(() => {
+            recorder.state == "Recording" && recorder.stop()
+        })
+
+        Promise.all([stopped, recorded]).then(() => data)
+    }
+
+    stop(stream) {
+        stream.getTracks().forEach(track => { track.stop() });
+    }
+
+    runing() {
+        navigator.mediaDevices.getUserMedia('click', constraint).then(stream => {
+            video.srcObject = stream; 
+            video.captureStream = video.captureStream || video.mozCaptureStream;
+            return new Promise(resolve => video.onplaying() = resolve); 
+
+        }).then(() => {
+            this.startRecord(video)
+        }).then(chunks => {
+            let recordedBlob = new Blob(chunks, { type: 'video/webm'})
+            // recording.src = URL.createObjectURL(recordedBlob);
+            // downloadButton.href = recording.src;
+            // downloadButton.download = "RecordedVideo.webm";
+        }).catch(e => {
+            this.stop(video.srcObject); 
+
+        }, false)
+    }
+}

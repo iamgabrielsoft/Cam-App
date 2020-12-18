@@ -1,5 +1,4 @@
 
-
 const openNav = () => {
     document.querySelector(".sidenav").style.width = "250px";
     document.querySelector(".main").style.marginLeft = "250px"
@@ -12,7 +11,7 @@ const closeNav = () => {
 
 
 const getTotal = {
-    snap: () => {
+    snapCounter: () => {
 
         //increase the number when a shot is taken
         //how do i increase the value 
@@ -23,7 +22,7 @@ const getTotal = {
         }
     }, 
 
-    record: () => {
+    recordCounter: () => {
 
         for(let i = 0; i<= vddb.length; i++)
         {
@@ -38,6 +37,8 @@ const getTotal = {
         }
     }
 }
+
+
 
 
 //deleteAll Button 
@@ -194,3 +195,10 @@ const deletecanvas = (element) => {
 
     //ConvertTheCanva(snapdb) //duplicating the image
 }
+
+
+// module.export = {
+//     openNav,  
+//     closeNav, 
+//     deletecanvas, 
+// }
