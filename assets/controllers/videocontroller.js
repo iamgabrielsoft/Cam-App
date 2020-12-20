@@ -1,69 +1,51 @@
-var data = [];
-
+ 
 class DisplayVideo{
     constructor(vidName, vidLimit) {
         this.vidName = vidName, 
         this.vidLimit = vidLimit
+        
     }
 
-    get() {
-        this.vidName; 
+    wait(limit) {
+        return new Promise(resolve => setTimeout(resolve, limit));
+        //return new Promise(resolve => setTimeout(() => {resolve}, this.vidLimit))
     }
 
-    set()  {
-        this.vidLimit
-    }
+    startRecord(video, length) {
 
-    wait() {
-        return new Promise(resolve => setTimeout(() => {resolve}, this.vidLimit))
-    }
+        var canvas = document.createElement("canvas");
+        var stream = canvas.captureStream(25);
+        var vidChunks = [];
 
-    startRecord(stream) {
+        var equal  = length /1000 
 
         var options = {
-            audioBitsPerSecond : 128000,
-            videoBitsPerSecond : 2500000,
-            mimeType : 'video/mp4', 
-            // x: () => {
-            //     return console.log(stream.captureStream(), this.vidLimit)
-            // }
+            mimeType: 'video/webm;  codecs=vp9', 
         }
 
-        const recorder = new MediaStreamRecorder(constraint, options)
-        recorder.ondataavailable = event => data.push(event.data)
+        var mediaRecorder;
 
-        let stopped = new Promise((resolve, reject) => {
-            recorder.onstop = resolve; 
-            recorder.onerror = event => reject(event.name)
+        mediaRecorder = new MediaRecorder(stream, options);
+        console.log(mediaRecorder)
+
+        mediaRecorder.ondataavailable = event => vidChunks.push(console.log(event.data))
+        mediaRecorder.start(); 
+
+        const stopped = new Promise((resolve, reject) => {
+            mediaRecorder.onstop = resolve; 
+            mediaRecorder.onerror = event => reject(console.log(event.name))
         })
 
-        let recorded = this.wait().then(() => {
-            recorder.state == "Recording" && recorder.stop()
+        const recorded = this.wait(500).then(() => {
+            console.log(mediaRecorder.state == "Recording" && mediaRecorder.stop()) 
         })
 
-        Promise.all([stopped, recorded]).then(() => data)
+        return Promise.all([stopped, recorded]).then(() => console.log(vidChunks))
     }
 
     stop(stream) {
-        stream.getTracks().forEach(track => { track.stop() });
-    }
-
-    runing() {
-        navigator.mediaDevices.getUserMedia('click', constraint).then(stream => {
-            video.srcObject = stream; 
-            video.captureStream = video.captureStream || video.mozCaptureStream;
-            return new Promise(resolve => video.onplaying() = resolve); 
-
-        }).then(() => {
-            this.startRecord(video)
-        }).then(chunks => {
-            let recordedBlob = new Blob(chunks, { type: 'video/webm'})
-            // recording.src = URL.createObjectURL(recordedBlob);
-            // downloadButton.href = recording.src;
-            // downloadButton.download = "RecordedVideo.webm";
-        }).catch(e => {
-            this.stop(video.srcObject); 
-
-        }, false)
+        stream.captureStream().getTracks().forEach(tracks => {
+            console.log(tracks)
+        });
     }
 }

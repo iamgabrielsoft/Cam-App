@@ -94,13 +94,13 @@ body {
     margin-top: 20px;
   }
 
-  .deletecanvas, .downloadcanvas {
+  .deletecanvas, .downloadcanvas, .deletevid {
     cursor: pointer;
     margin-left: -50px;
     margin-right: 40px;
   }
 
-  .deletecanvas {
+  .deletecanvas, .deletevid {
     color: red;
   }
 
@@ -108,7 +108,7 @@ body {
     color: green;
   }
 
-  .deletecanvas:hover { 
+  .deletecanvas:hover, .deletevid:hover { 
     color: red;
     transition: 0.3s;
   }
@@ -245,7 +245,7 @@ body {
 
   }
 
-  .savebtn {
+  .savebtn, .vidbtn {
     width: 50px;
     margin-top: -90px;
     float: right;

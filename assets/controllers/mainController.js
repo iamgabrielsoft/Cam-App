@@ -88,11 +88,10 @@ async function ConvertTheCanva (arr = []) {
     ctx.drawImage(video, 0, 0, 100, 110);
     
     schema(video, saveinput.value);
-
     saveinput.innerHTML = `<input type="text" class="form-control nameImage" aria-describedby="emailHelp">`
-
-
     savebtn.innerHTML = `<a class="download" title="Download" data-toggle="tooltip"><i class="fas fa-download" style="color: green"></i></a>`
+
+
     arr.forEach((pic) => {
         liPic.innerHTML = `
         <div class="dropdown dropdown-class sharebtn">
@@ -109,8 +108,6 @@ async function ConvertTheCanva (arr = []) {
         `
     })
 
-    
-    //posting the canvass to twitter
 
     const post = {
         twitt : (dataurl) => {
@@ -137,7 +134,7 @@ async function ConvertTheCanva (arr = []) {
 
 
         $('.savedpic').each((data) => {
-        }).append(saveinput, savebtn).each((value) => {
+        }).append(saveinput, savebtn).each(() => {
             $('.savebtn').click(() => {
                     $(".popup-overlay, .popup-content").addClass("active")
                     $('.close, .popup-overlay').on('click', () => {
