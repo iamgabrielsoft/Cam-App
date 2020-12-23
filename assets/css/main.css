@@ -100,6 +100,10 @@ body {
     margin-right: 40px;
   }
 
+  .minutes {
+    margin-left: 50px;
+  }
+
   .deletecanvas, .deletevid {
     color: red;
   }
@@ -226,6 +230,10 @@ body {
     margin-left: -40px; 
     margin-top: 30px;
     cursor: pointer;
+    z-index: -1;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -o-transition: all 1s;
   }
 
   canvas:hover {
