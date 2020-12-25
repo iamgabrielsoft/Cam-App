@@ -1,4 +1,5 @@
-
+const controller1 = new Controller1() //initiating the controller1 class
+ 
 const openNav = () => {
     document.querySelector(".sidenav").style.width = "250px";
     document.querySelector(".main").style.marginLeft = "250px"
@@ -12,19 +13,15 @@ const closeNav = () => {
 
 const getTotal = {
     snapCounter: () => {
-
-        //increase the number when a shot is taken
-        //how do i increase the value 
-        for(let i = 0; i <=snapdb.length; i++) {
-            if(snapdb[i] == null) {
-                totalsnap.innerHTML = i;
-            }
+        for(let i = 0; i <snapdb.length; i++) {
+            totalsnap.innerHTML = i; 
+            console.log(i)
         }
     }, 
 
     recordCounter: () => {
 
-        for(let i = 0; i<= vddb.length; i++)
+        for(let i = 0; i<=vddb.length; i++)
         {
             if(vddb[i] == null) {
                 totalvideo.innerHTML = i; 
@@ -68,9 +65,7 @@ const getTotal = {
 // })
 
 
-
-
-async function ConvertTheCanva (arr = []) {
+async function ConvertTheCanva (arr = [], notsaved = []) {
 
     var canvas = document.createElement('canvas');
     var savebtn = document.createElement('button'); 
@@ -86,12 +81,11 @@ async function ConvertTheCanva (arr = []) {
     ulPic.appendChild(canvas); 
     ctx = canvas.getContext('2d');
     ctx.drawImage(video, 0, 0, 100, 110);
-    
-    schema(video, saveinput.value);
+
     saveinput.innerHTML = `<input type="text" class="form-control nameImage" aria-describedby="emailHelp">`
     savebtn.innerHTML = `<a class="download" title="Download" data-toggle="tooltip"><i class="fas fa-download" style="color: green"></i></a>`
 
-
+    
     arr.forEach((pic) => {
         liPic.innerHTML = `
         <div class="dropdown dropdown-class sharebtn">
@@ -104,8 +98,22 @@ async function ConvertTheCanva (arr = []) {
             </div>
         </div>
         <a id ="${pic.id}" class="deletecanvas" title="Delete" data-toggle="tooltip" ><i class="fas fa-trash deleteachpic">&#xE872;</i></a>
-
         `
+
+    })
+
+
+    notsaved.forEach((picNotsaved) => {
+        liPic.innerHTML = `<div class="dropdown dropdown-class sharebtn">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-share-alt"></i> Share
+        </a>
+        <div class="dropdown-menu drop" aria-labelledby="dropdownMenuLink" >
+                <a class="dropdown-item twitter" href="#"><i class="fab fa-twitter"></i>twitter</a><br>
+                <a class="dropdown-item facebook" href="#"><i class="fab fa-facebook-f"></i>Facebook</a>
+        </div>
+    </div>
+    <a id ="${picNotsaved.id}" class="deletecanvas" title="Delete" data-toggle="tooltip" ><i class="fas fa-trash deleteachpic">&#xE872;</i></a>`
     })
 
 
@@ -149,15 +157,14 @@ async function ConvertTheCanva (arr = []) {
                     const promise = new Promise((resolve, reject) => {
                         canvas.toBlob((data) => {
                             a = document.createElement('a')
-                            a.href = URL.createObjectURL(data);        
+                            a.href = URL.createObjectURL(data);     
                         
                             if(saveinput.value.length == " ") {
                                 console.log('empty field'); //notify the user on the input field 
                                 //throw in spinner
-
-                                //reject(data); 
                                 
                             }else {
+                                a.download = controller1.Snapschema(video, saveinput.value);
                                 a.download = saveinput.value 
                                 a.click(); 
                                 URL.revokeObjectURL(a.href); 
@@ -190,12 +197,4 @@ const deletecanvas = (element) => {
         value.id != Number(key); 
     })
 
-    //ConvertTheCanva(snapdb) //duplicating the image
 }
-
-
-// module.export = {
-//     openNav,  
-//     closeNav, 
-//     deletecanvas, 
-// }

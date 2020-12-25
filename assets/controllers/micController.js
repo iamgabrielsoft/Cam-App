@@ -2,14 +2,9 @@
 
 class MicrophoneController {
     constructor() {
-
+        
     }
 }
-
-
-
-
-
 
 
 

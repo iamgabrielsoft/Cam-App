@@ -69,9 +69,3 @@ main{
 	100%
 		{transform: rotate(0)}
 }
-
-/* Mobile Rwsponsiveness*/
-
-@media-query(max-width: 400px) {
-    
-}
