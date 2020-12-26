@@ -12,10 +12,11 @@ const closeNav = () => {
 
 
 const getTotal = {
-    snapCounter: () => {
-        for(let i = 0; i <snapdb.length; i++) {
-            totalsnap.innerHTML = i; 
-            console.log(i)
+    snapCounter: () => { //increase the number of pic 
+        for(let i = 0; i <=snapdb.length; i++) {
+            if(snapdb[i] == null) {
+                totalsnap.innerHTML = i;
+            }
         }
     }, 
 
@@ -25,11 +26,6 @@ const getTotal = {
         {
             if(vddb[i] == null) {
                 totalvideo.innerHTML = i; 
-                $('.deletedvid').click(() => {
-                    console.log('Your About to delete Videos')
-                    //delete the video
-
-                }) 
             } 
         }
     }
@@ -65,7 +61,7 @@ const getTotal = {
 // })
 
 
-async function ConvertTheCanva (arr = [], notsaved = []) {
+async function ConvertTheCanva (arr = []) {
 
     var canvas = document.createElement('canvas');
     var savebtn = document.createElement('button'); 
@@ -82,10 +78,13 @@ async function ConvertTheCanva (arr = [], notsaved = []) {
     ctx = canvas.getContext('2d');
     ctx.drawImage(video, 0, 0, 100, 110);
 
+    controller1.Snapschema(video, saveinput.value)
+
+
     saveinput.innerHTML = `<input type="text" class="form-control nameImage" aria-describedby="emailHelp">`
     savebtn.innerHTML = `<a class="download" title="Download" data-toggle="tooltip"><i class="fas fa-download" style="color: green"></i></a>`
 
-    
+
     arr.forEach((pic) => {
         liPic.innerHTML = `
         <div class="dropdown dropdown-class sharebtn">
@@ -99,21 +98,6 @@ async function ConvertTheCanva (arr = [], notsaved = []) {
         </div>
         <a id ="${pic.id}" class="deletecanvas" title="Delete" data-toggle="tooltip" ><i class="fas fa-trash deleteachpic">&#xE872;</i></a>
         `
-
-    })
-
-
-    notsaved.forEach((picNotsaved) => {
-        liPic.innerHTML = `<div class="dropdown dropdown-class sharebtn">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-share-alt"></i> Share
-        </a>
-        <div class="dropdown-menu drop" aria-labelledby="dropdownMenuLink" >
-                <a class="dropdown-item twitter" href="#"><i class="fab fa-twitter"></i>twitter</a><br>
-                <a class="dropdown-item facebook" href="#"><i class="fab fa-facebook-f"></i>Facebook</a>
-        </div>
-    </div>
-    <a id ="${picNotsaved.id}" class="deletecanvas" title="Delete" data-toggle="tooltip" ><i class="fas fa-trash deleteachpic">&#xE872;</i></a>`
     })
 
 
@@ -164,7 +148,7 @@ async function ConvertTheCanva (arr = [], notsaved = []) {
                                 //throw in spinner
                                 
                             }else {
-                                a.download = controller1.Snapschema(video, saveinput.value);
+                                //a.download = controller1.Snapschema(video, saveinput.value);
                                 a.download = saveinput.value 
                                 a.click(); 
                                 URL.revokeObjectURL(a.href); 
@@ -180,21 +164,15 @@ async function ConvertTheCanva (arr = [], notsaved = []) {
             })
         })
 
-
-    //delete Each  canvas 
-    document.querySelectorAll('.deletecanvas').forEach((del) => {
-        del.addEventListener('click', (element) => {
-            deletecanvas(element?.target); //delete func
-        })
+    $('.deletecanvas').click((event) => {
+        deletingEachPic(snapdb)
     })
 }
 
 
-const deletecanvas = (element) => {
-    let key = element?.id; 
-    console.log(key); //empty string  
-    snapdb = snapdb.filter((value) => {
-        value.id != Number(key); 
-    })
-
+const deletingEachPic = (element) => {
+    let key = element
+    for(let i = 0; i<element.length; i++){
+        console.log(element[i].id)
+    }
 }

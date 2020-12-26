@@ -1,11 +1,32 @@
 
 const vidLength  = 2; 
 
-class DisplayVideo{
+class VideoController{
     constructor(vidName, vidLimit) {
         this.vidName = vidName, 
         this.vidLimit = vidLimit
         
+    }
+
+    shutter() {
+        class  Shutter {
+            
+        }
+    }
+
+    timer(TimeLimit) {
+        const setTimer = setInterval(() => {
+            console.log(TimeLimit--);
+            if(TimeLimit == 0) {
+                ConvertTheCanva(snapdb)
+                //represent this on the Interface
+                console.log('Hit Jackpot')
+            }
+        }, 1000);
+
+        const  promise = new Promise((resolve,  reject) => {
+            resolve(setTimer);
+        })
     }
 
     wait(limit) {

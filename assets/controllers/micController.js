@@ -1,8 +1,10 @@
-
+const controller1 = new Controller1()
+const videocontroller  = new VideoController()
 
 class MicrophoneController {
-    constructor() {
-        
+    constructor(name, recordLimit) {
+        this.name = name; 
+        this.recordLimit = recordLimit; 
     }
 }
 

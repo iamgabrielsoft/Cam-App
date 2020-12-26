@@ -1,5 +1,4 @@
 var counter = 0; 
-var unsavedSnap = []
 var vddb = []; 
 var snapdb = []; 
 const video = document.querySelector('.video'); 
@@ -13,20 +12,13 @@ const record = document.querySelector('.xy')
 const sec = document.getElementById("sec"); 
 const hr = document.createElement('hr')
 const min = document.createElement('min')
+const fiveM = document.querySelector('.five-minutes'); 
+const tenM = document.querySelector('.ten-minutes'); 
+const fifteenM = document.querySelector('.fifteen-minutes'); 
 
 
-const videoController = new DisplayVideo('myvid', 20)
 
-const UnsavedSchema  = (video, NameofPic) => {
-    const appSchema = {
-        id: Date.now(),
-        video,
-        NameofPic
-    }
-
-    unsavedSnap.push(appSchema);
-}
-
+const videoController = new VideoController('myvid', 20)
 
 const constraint = {
     video: true, 
@@ -113,10 +105,8 @@ class Controller1 {
             })
 
         ulVid.appendChild(downloadbtn);
-
             $('canvas').click(() => {
-                console.log('Playing Video')
-
+                console.log('You clicked the Video!')
             }).promise()
         }
     }
@@ -169,7 +159,7 @@ const time = {
 
 const videoFunc = RecordFunc.prototype.videoFunc = () => {
     $('.xx').click(() => { //snap Pictures
-        ConvertTheCanva(snapdb, snapdb); 
+        ConvertTheCanva(snapdb); 
         getTotal.snapCounter()
 
     })
@@ -181,6 +171,23 @@ const videoFunc = RecordFunc.prototype.videoFunc = () => {
 
     $('.xz').click(() => { //ending recording
         var y = new Controller1().endVideo()    
+    })
+
+
+    $('.five-minutes').click((event) => { //5 minutes timer
+        videoController.timer(5); 
+       
+    })
+
+
+    $('.ten-minutes').click((event) => { //10  minutes timer
+        videoController.timer(10)
+       
+    })
+
+    $('.fifteen-minutes').click((event) => { //15 minutes timer
+        videoController.timer(15); 
+        
     })
 
 }
