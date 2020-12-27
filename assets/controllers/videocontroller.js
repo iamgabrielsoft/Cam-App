@@ -1,17 +1,15 @@
 
+const app = new ShutterApp()
 const vidLength  = 2; 
 
 class VideoController{
     constructor(vidName, vidLimit) {
         this.vidName = vidName, 
         this.vidLimit = vidLimit
-        
     }
 
     shutter() {
-        class  Shutter {
-            
-        }
+        app.startAnimation()
     }
 
     timer(TimeLimit) {
@@ -104,3 +102,7 @@ class VideoController{
 
 }
 
+
+// module.exports ={
+//     VideoController
+// }

@@ -1,7 +1,4 @@
 
-
-
-
 import Swiper from 'swiper' 
 import 'swiper/swiper-bundle'; 
 import Swiper, {Navigation, Pagination} from 'swiper'; 

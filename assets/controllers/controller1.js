@@ -17,8 +17,7 @@ const tenM = document.querySelector('.ten-minutes');
 const fifteenM = document.querySelector('.fifteen-minutes'); 
 
 
-
-const videoController = new VideoController('myvid', 20)
+//const videoController = new VideoController('myvid', 20)
 
 const constraint = {
     video: true, 
@@ -193,3 +192,8 @@ const videoFunc = RecordFunc.prototype.videoFunc = () => {
 }
 
 videoFunc(); 
+
+// module.exports = {
+//     videoFunc, 
+//     Controller1, 
+// }

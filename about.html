@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
 <link rel="stylesheet" href="assets/css/about.css">
-<title>About Page</title>
+<title>Cam-App|About Page</title>
 </head>
 <body>
     <div class="container">
@@ -18,8 +18,17 @@
                 <a href="./index.html">Home</a>
                 <a href="#">Shutter Timer</a>
                 <a href="./microphone.html">Microphone</a>
-                <a href="#">Timer</a>
-                <a href="#">Settings</a>
+                <div class="d-flex">
+                    <div class="dropdown mr-1">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">Timer</a>
+                         <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                        <a class="dropdown-item five-minutes" >5s</a>
+                        <a class="dropdown-item ten-minutes" >10s</a>
+                        <a class="dropdown-item fifteen-minutes">15s</a>
+                      </div>
+                    </div>
+                </div>
+                <a href="./settings.html">Settings</a>
                 <a href="#">About</a>
             </div>
             <div class="main">
