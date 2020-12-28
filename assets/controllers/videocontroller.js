@@ -1,5 +1,5 @@
 
-const app = new ShutterApp()
+const shutterinit = new ShutterApp()
 const vidLength  = 2; 
 
 class VideoController{
@@ -8,9 +8,11 @@ class VideoController{
         this.vidLimit = vidLimit
     }
 
-    shutter() {
-        app.startAnimation()
+    async shutter() {
+        await shutterinit.startAnimation(); 
+        
     }
+
 
     timer(TimeLimit) {
         const setTimer = setInterval(() => {

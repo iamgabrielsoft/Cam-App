@@ -176,11 +176,3 @@ const deletingEachPic = (element) => {
         console.log(element[i].id)
     }
 }
-
-
-// module.exports = {
-//     ConvertTheCanva, 
-//     openNav, 
-//     closeNav, 
-//     getTotal,  
-// }

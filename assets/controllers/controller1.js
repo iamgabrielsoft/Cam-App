@@ -8,7 +8,8 @@ const numberofpic = document.querySelector('.numberofpic');
 const totalsnap = document.querySelector('.totalSnap')
 const totalvideo = document.querySelector('.totalVideo')
 const displayFile = document.querySelector('.display'); 
-const record = document.querySelector('.xy')
+const startrecordElement = document.querySelector('.xy')
+const endrecordElement = document.querySelector('.xz')
 const sec = document.getElementById("sec"); 
 const hr = document.createElement('hr')
 const min = document.createElement('min')
@@ -17,7 +18,8 @@ const tenM = document.querySelector('.ten-minutes');
 const fifteenM = document.querySelector('.fifteen-minutes'); 
 
 
-//const videoController = new VideoController('myvid', 20)
+const videocontroller = new VideoController('myvid', 20)
+
 
 const constraint = {
     video: true, 
@@ -35,7 +37,7 @@ class Controller1 {
             vidName
         }
     
-        vddb.push(vddbSchema)
+        vddb.push(vddbSchema); 
     }
 
     Snapschema (video, NameofPic) {
@@ -48,27 +50,39 @@ class Controller1 {
         snapdb.push(appSchema);
     }
 
-    startVideo(vidLimit) {
-        console.log('STARTNG VIDEO')
-        min.setAttribute('class', 'minutes')
-        //time.play()
-        if(vidLimit == 500) console.log('Video is Too Long')
-        
-        videoController.startRecord(video.captureStream())
+    async startVideo(vidLimit) {
+       this.videoSchema(video, 'data.webm') //pushing to array
+       getTotal.recordCounter() 
+       this.duplicateVideo.staticVideo(vddb) 
+       console.log(vddb)
+        if(vidLimit <= 500) console.log('Video too Long')
+         
+        //videocontroller.startRecord(video.captureStream())
     }
 
     endVideo() {
-        this.videoSchema(video, 'data.webm')
-        setTimeout(() => {
-            record.classList.remove('spin');   //spinning CSS and to signify the video has ended
-            record.disabled = false;
-        }, 400)
-
 
         console.log('ENDING VIDEO')
-        getTotal.recordCounter()
-        this.duplicateVideo.staticVideo(vddb)
-        videoController.stop(video.stop);
+        const promise =  new Promise((resolve, reject) => {
+            setTimeout(() => {
+                startrecordElement.classList.remove('spin');   //spinning CSS and to signify the video has ended
+                startrecordElement.disabled = false;
+                
+            }, 400)
+            
+           resolve(vddb)
+        })
+
+        console.log(promise)
+
+        videocontroller.stop(video)
+
+
+        // this.videoSchema(video, 'data.webm') //pushing to array
+        //videocontroller.stop(video)
+        
+         //getTotal.recordCounter() //cancel
+        // this.duplicateVideo.staticVideo(vddb) //cancel   
     }
 
     duplicateVideo =  {
@@ -111,6 +125,8 @@ class Controller1 {
     }
 }
 
+
+
 function RecordFunc() {
     navigator.mediaDevices.getUserMedia(constraint)
        .then((stream) => {
@@ -122,6 +138,7 @@ function RecordFunc() {
            location.href = './404.html'; 
        })
 }
+
 
 RecordFunc(); 
 
@@ -158,42 +175,42 @@ const time = {
 
 const videoFunc = RecordFunc.prototype.videoFunc = () => {
     $('.xx').click(() => { //snap Pictures
-        ConvertTheCanva(snapdb); 
-        getTotal.snapCounter()
+        //ConvertTheCanva(snapdb); 
+        videocontroller.shutter()
+        getTotal.snapCounter(); //counter for snapped pic
 
     })
 
     $('.xy').click(() => { //start recording 
-        var x = new Controller1().startVideo
-        $('.xy').prop('disabled', true)
+        console.log('STARTNG VIDEO')
+        new Controller1().startVideo(video.duration); 
+        
+       // $('.xy').prop('disabled', true)
+        //endrecordElement.disabled = false;
     })
 
     $('.xz').click(() => { //ending recording
-        var y = new Controller1().endVideo()    
+        new Controller1().endVideo()
+
     })
 
 
     $('.five-minutes').click((event) => { //5 minutes timer
-        videoController.timer(5); 
+        videocontroller.timer(5); 
        
     })
 
 
     $('.ten-minutes').click((event) => { //10  minutes timer
-        videoController.timer(10)
-       
+        videocontroller.timer(10); 
+
     })
 
     $('.fifteen-minutes').click((event) => { //15 minutes timer
-        videoController.timer(15); 
-        
+        videocontroller.timer(15); 
     })
 
 }
 
 videoFunc(); 
 
-// module.exports = {
-//     videoFunc, 
-//     Controller1, 
-// }

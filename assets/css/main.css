@@ -66,9 +66,16 @@ body {
     
   }
 
+  .xx {
+    margin-right: 100px;
+  }
+
   .mainButton {
-    margin-top: 40px;
-    margin-left: 40px;
+   margin-bottom: -1120px;
+    margin-right: 60px;
+    width: 100px;
+    text-align: center !important;
+    object-fit: contain;
   }
 
 

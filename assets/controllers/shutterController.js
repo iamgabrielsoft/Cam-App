@@ -1,5 +1,5 @@
 
-const SPEED_NUM = 0.35; // slow the speed of the shutter by increasing this number
+const SPEED_NUM = 0.60; // slow the speed of the shutter by increasing this number
 const ROTATION_DEG = 60;
 const CSS_IS_ACTIVE = "is--active";
 
@@ -14,7 +14,7 @@ class Shutter {
 		this.stopAnimate = this.stopAnimate.bind(this);
 		this.shutterTimeline.eventCallback("onComplete", this.stopAnimate);
 
-		this.init();
+        this.init();
 	}
 
 	init() {
@@ -38,10 +38,12 @@ class Shutter {
 		.to(this.shutters[7], SPEED_NUM,{rotation:0, ease:Expo.easeOut},1)
 	}
 
+
 	onAnimate() {
 		if(!this.shutterContainer.classList.contains(CSS_IS_ACTIVE)) {
 			this.shutterContainer.classList.add(CSS_IS_ACTIVE);
-		}
+        }
+        
 		this.shutterTimeline.play();
 	}
 
@@ -54,16 +56,15 @@ class Shutter {
 }
 
 
-
-
-
 class ShutterApp {
 	constructor() {
 		this.shutter = new Shutter();
 		const btn = document.querySelector(".js-play-btn");
-
 		this.startAnimation = this.startAnimation.bind(this);
-		btn.addEventListener("click", this.startAnimation);
+		btn.addEventListener('click', async () => {
+            this.startAnimation(); 
+            ConvertTheCanva(snapdb)
+        });
 	}
 
 	startAnimation() {
