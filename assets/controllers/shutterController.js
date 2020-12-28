@@ -59,15 +59,10 @@ class Shutter {
 class ShutterApp {
 	constructor() {
 		this.shutter = new Shutter();
-		const btn = document.querySelector(".js-play-btn");
 		this.startAnimation = this.startAnimation.bind(this);
-		btn.addEventListener('click', async () => {
-            this.startAnimation(); 
-            ConvertTheCanva(snapdb)
-        });
 	}
 
 	startAnimation() {
-		this.shutter.onAnimate();
+		return ConvertTheCanva(snapdb);
 	}
 }

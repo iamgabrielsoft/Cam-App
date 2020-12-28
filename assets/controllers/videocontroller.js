@@ -9,8 +9,8 @@ class VideoController{
     }
 
     async shutter() {
-        await shutterinit.startAnimation(); 
-        
+        shutterinit.shutter.onAnimate() ; 
+        shutterinit.startAnimation()
     }
 
 
