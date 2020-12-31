@@ -1,3 +1,5 @@
+
+
 var counter = 0; 
 var vddb = []; 
 var snapdb = []; 
@@ -19,7 +21,6 @@ const fifteenM = document.querySelector('.fifteen-minutes');
 
 
 const videocontroller = new VideoController('myvid', 20)
-
 
 const constraint = {
     video: true, 
@@ -56,8 +57,6 @@ class Controller1 {
        this.duplicateVideo.staticVideo(vddb) 
        console.log(vddb)
         if(vidLimit <= 500) console.log('Video too Long')
-         
-        //videocontroller.startRecord(video.captureStream())
     }
 
     endVideo() {
@@ -174,11 +173,9 @@ const time = {
 
 
 const videoFunc = RecordFunc.prototype.videoFunc = () => {
-    $('.xx').click(() => { //snap Pictures
-        //ConvertTheCanva(snapdb); 
+    $('.xx').click(() => { //snap Pictures 
         videocontroller.shutter()
         getTotal.snapCounter(); //counter for snapped pic
-
     })
 
     $('.xy').click(() => { //start recording 
@@ -193,7 +190,6 @@ const videoFunc = RecordFunc.prototype.videoFunc = () => {
         new Controller1().endVideo()
 
     })
-
 
     $('.five-minutes').click((event) => { //5 minutes timer
         videocontroller.timer(5); 

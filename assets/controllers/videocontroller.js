@@ -10,7 +10,7 @@ class VideoController{
 
     async shutter() {
         shutterinit.shutter.onAnimate() ; 
-        shutterinit.startAnimation()
+        await shutterinit.startAnimation()
     }
 
 
@@ -45,12 +45,10 @@ class VideoController{
             videoBitsPerSecond: 250000
         }
 
-        var mediaRecorder;
-
-        mediaRecorder = new MediaRecorder(video, options);
+        
+        var mediaRecorder = new MediaRecorder(video, options);
         console.log(mediaRecorder)
         const b = mediaRecorder.ondataavailable = event => vidChunks.push(event)
-
         console.log(b)
         console.log(mediaRecorder.stream) 
         
@@ -82,7 +80,7 @@ class VideoController{
                     })
                 })
                 .then(() => {
-                    var x = this.startRecord(stream, vidLength); 
+                    this.startRecord(stream, vidLength); 
                 })
                 .then((chunks) => {
                     const blob = new Blob([chunks], { type: 'video/webm'})
@@ -103,8 +101,3 @@ class VideoController{
 
 
 }
-
-
-// module.exports ={
-//     VideoController
-// }

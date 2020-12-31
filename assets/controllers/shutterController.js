@@ -66,3 +66,4 @@ class ShutterApp {
 		return ConvertTheCanva(snapdb);
 	}
 }
+

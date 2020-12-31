@@ -1,4 +1,4 @@
-const controller1 = new Controller1() //initiating the controller1 class
+const controller1 = new Controller1() //initiating the controller1 clas
  
 const openNav = () => {
     document.querySelector(".sidenav").style.width = "250px";
@@ -165,14 +165,12 @@ async function ConvertTheCanva (arr = []) {
         })
 
     $('.deletecanvas').click((event) => {
-        deletingEachPic(snapdb)
+        deletingEachPic(event)
     })
 }
 
 
 const deletingEachPic = (element) => {
-    let key = element
-    for(let i = 0; i<element.length; i++){
-        console.log(element[i].id)
-    }
+    let key = element.target; 
+    console.log(key.parentNode.parentNode.removeChild(key.parentNode))
 }
