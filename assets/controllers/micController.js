@@ -1,35 +1,27 @@
-
+const controller1 = new Controller1() 
+const videocontroller = new VideoController()
 const record = document.querySelector('.js-record');
 const stop = document.querySelector('.js-stop');
-const soundClips = document.querySelector('.waveform__canvas');
+const soundClips = document.querySelector('.sidebar');
 const canvas = document.querySelector('.visualizer');
-const mainSection = document.querySelector('.toolbar');
-
-// disable stop button while not recording
-
+const mainSection = document.querySelector('.recorder');
 stop.disabled = true;
 
-// visualiser setup - create web audio api context and canvas
-
-let audioCtx;
-const canvasCtx = canvas.getContext("2d");
-
-//main block for doing the audio recording
+var audioCtx;
+var canvasCtx = canvas.getContext("2d");
 
 if (navigator.mediaDevices.getUserMedia) {
-  console.log('getUserMedia supported.');
 
   const constraints = { audio: true };
-  let chunks = [];
-
-  let onSuccess = function(stream) {
+  var chunks = [];
+  
+  const onSuccess = (stream) => {
     const mediaRecorder = new MediaRecorder(stream);
-
     visualize(stream);
 
     record.onclick = () => {
       mediaRecorder.start();
-      console.log(mediaRecorder.state);
+      mediaRecorder.state
       record.style.background = "red";
 
       stop.disabled = false;
@@ -39,7 +31,7 @@ if (navigator.mediaDevices.getUserMedia) {
 
     stop.onclick = () => {
       mediaRecorder.stop();
-      console.log(mediaRecorder.state);
+      mediaRecorder.state
       console.log("recorder stopped");
       record.style.background = "";
       record.style.color = "";
@@ -47,47 +39,52 @@ if (navigator.mediaDevices.getUserMedia) {
       record.disabled = false;
     }
 
-    mediaRecorder.onstop = function(e) {
+
+    mediaRecorder.onstop = (e) => {
       const clipName = prompt('Name Your Clip');
-      const clipContainer = document.createElement('article');
-      const clipLabel = document.createElement('p');
+      const ul = document.createElement('article');
+      const Label = document.createElement('p');
       const audio = document.createElement('audio');
       const deleteButton = document.createElement('button');
 
-      clipContainer.classList.add('clip');
-      audio.setAttribute('controls', '');
-      deleteButton.textContent = 'Delete';
-      deleteButton.className = 'delete';
 
-      if(clipName === null) clipLabel.textContent = 'My unnamed clip';
-      else clipLabel.textContent = clipName;
+      ul.classList.add('clip');
+      Label.setAttribute('class', 'labelTag')
+      audio.setAttribute('controls', '');
+      deleteButton.setAttribute('class', 'delete-Audio')
+      deleteButton.textContent = 'Delete';
+
+      if(clipName === null) Label.textContent = 'My unnamed clip';
+      else Label.textContent = clipName;
     
-      clipContainer.appendChild(audio);
-      clipContainer.appendChild(clipLabel);
-      clipContainer.appendChild(deleteButton);
-      soundClips.appendChild(clipContainer);
+      ul.appendChild(audio);
+      ul.appendChild(Label);
+      ul.appendChild(deleteButton);
+      soundClips.appendChild(ul);
       audio.controls = true;
       const blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
       const audioURL = window.URL.createObjectURL(blob);
       audio.src = audioURL;
+
+
       deleteButton.onclick = (e) => {
-        let evtTgt = e.target;
-        evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+        let Tt = e.target;
+        Tt.parentNode.parentNode.removeChild(Tt.parentNode);
       }
 
 
-      clipLabel.onclick = () => {
-        const existingName = clipLabel.textContent;
-        const newClipName = prompt('Enter a new name for your sound clip?');
-        if(newClipName === null) clipLabel.textContent = existingName;
-        else clipLabel.textContent = newClipName;
+      Label.addEventListener = () => {
+        existingName = Label.textContent;
+        newClipName = prompt('Name Your Clip?');
+        if(newClipName === null) Label.textContent = existingName;
+        else Label.textContent = newClipName;
       }
     }
 
-    mediaRecorder.ondataavailable = (e) => { chunks.push(e.data); }
+    mediaRecorder.ondataavailable = (e) => { chunks.push(e.data) }
   }
 
-  let onError = (err) => {console.log('Error Has Occured ' + err) }
+  const onError = (err) => {console.log('Error Has Occured ' + err) }
   navigator.mediaDevices.getUserMedia(constraints).then(onSuccess, onError);
 
 } else console.log('getUserMedia not supported on your browser!');
@@ -98,7 +95,6 @@ if (navigator.mediaDevices.getUserMedia) {
 const visualize = (stream) => {
   if(!audioCtx) audioCtx = new AudioContext();
   
-
   const source = audioCtx.createMediaStreamSource(stream);
   const analyser = audioCtx.createAnalyser();
   analyser.fftSize = 2048;
@@ -123,11 +119,11 @@ const visualize = (stream) => {
 
 
     for(let i = 0; i < bufferLength; i++) {
-      let v = dataArray[i] / 128.0;
+      let v = dataArray[i] / 130.0;
       let y = v * HEIGHT/2;
       if(i === 0) canvasCtx.moveTo(x, y);
-       else canvasCtx.lineTo(x, y)
-        x += sliceWidth;
+      else canvasCtx.lineTo(x, y)
+      x += sliceWidth;
     }
 
     canvasCtx.lineTo(canvas.width, canvas.height/2);
@@ -135,6 +131,6 @@ const visualize = (stream) => {
   }
 }
 
-window.onresize = function() {
+window.onresize = () => {
   canvas.width = mainSection.offsetWidth;
 }

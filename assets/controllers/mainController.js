@@ -14,19 +14,21 @@ const closeNav = () => {
 const getTotal = {
     snapCounter: () => { //increase the number of pic 
         for(let i = 0; i <=snapdb.length; i++) {
-            if(snapdb[i] == null) {
-                totalsnap.innerHTML = i;
-            }
+            if(snapdb[i] == null) totalsnap.innerHTML = i;
+            
         }
     }, 
 
     recordCounter: () => {
-
         for(let i = 0; i<=vddb.length; i++)
         {
-            if(vddb[i] == null) {
-                totalvideo.innerHTML = i; 
-            } 
+            if(vddb[i] == null) totalvideo.innerHTML = i; 
+        }
+    }, 
+
+    miCounter: () => {
+        for(let i = 0; i<=micArr.length; i++){
+            if(micArr[i] == null) totalMic.innerHTML = i; 
         }
     }
 }
@@ -61,7 +63,7 @@ const getTotal = {
 // })
 
 
-async function ConvertTheCanva (arr = []) {
+const ConvertTheCanva = (arr = [])  => {
 
     var canvas = document.createElement('canvas');
     var savebtn = document.createElement('button'); 
@@ -79,8 +81,6 @@ async function ConvertTheCanva (arr = []) {
     ctx.drawImage(video, 0, 0, 100, 110);
 
     controller1.Snapschema(video, saveinput.value)
-
-
     saveinput.innerHTML = `<input type="text" class="form-control nameImage" aria-describedby="emailHelp">`
     savebtn.innerHTML = `<a class="download" title="Download" data-toggle="tooltip"><i class="fas fa-download" style="color: green"></i></a>`
 

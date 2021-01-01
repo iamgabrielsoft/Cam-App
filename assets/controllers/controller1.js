@@ -1,14 +1,15 @@
 
-
 var counter = 0; 
 var vddb = []; 
 var snapdb = []; 
+var micArr = []; 
 const video = document.querySelector('.video'); 
 const ulPic = document.querySelector('.savedpic');
 const ulVid = document.querySelector('.savedvideo')
 const numberofpic = document.querySelector('.numberofpic');
 const totalsnap = document.querySelector('.totalSnap')
 const totalvideo = document.querySelector('.totalVideo')
+const totalMic = document.querySelector('.totalMic')
 const displayFile = document.querySelector('.display'); 
 const startrecordElement = document.querySelector('.xy')
 const endrecordElement = document.querySelector('.xz')
@@ -72,16 +73,7 @@ class Controller1 {
            resolve(vddb)
         })
 
-        console.log(promise)
-
-        videocontroller.stop(video)
-
-
-        // this.videoSchema(video, 'data.webm') //pushing to array
-        //videocontroller.stop(video)
-        
-         //getTotal.recordCounter() //cancel
-        // this.duplicateVideo.staticVideo(vddb) //cancel   
+        videocontroller.stop(video)   
     }
 
     duplicateVideo =  {
