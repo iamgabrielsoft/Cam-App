@@ -1,5 +1,4 @@
-const controller1 = new Controller1() 
-const videocontroller = new VideoController()
+
 const record = document.querySelector('.js-record');
 const stop = document.querySelector('.js-stop');
 const soundClips = document.querySelector('.sidebar');
@@ -31,8 +30,9 @@ if (navigator.mediaDevices.getUserMedia) {
 
     stop.onclick = () => {
       mediaRecorder.stop();
-      mediaRecorder.state
-      console.log("recorder stopped");
+      //mediaRecorder.state
+      //push into array
+      new Controller1().micSchema(mediaRecorder)
       record.style.background = "";
       record.style.color = "";
       stop.disabled = true;
@@ -52,7 +52,7 @@ if (navigator.mediaDevices.getUserMedia) {
       Label.setAttribute('class', 'labelTag')
       audio.setAttribute('controls', '');
       deleteButton.setAttribute('class', 'delete-Audio')
-      deleteButton.textContent = 'Delete';
+      deleteButton.innerHTML =  `<a id ="delete" class="delete-Audio" title="Delete" data-toggle="tooltip" ><i class="fas fa-trash deleteachpic" style="color: red"></i></a>`;
 
       if(clipName === null) Label.textContent = 'My unnamed clip';
       else Label.textContent = clipName;
@@ -134,3 +134,6 @@ const visualize = (stream) => {
 window.onresize = () => {
   canvas.width = mainSection.offsetWidth;
 }
+
+
+// module.export = visualize

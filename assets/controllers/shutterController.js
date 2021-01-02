@@ -67,3 +67,5 @@ class ShutterApp {
 	}
 }
 
+
+// module.export = Shutter, ShutterApp, SPEED_NUM

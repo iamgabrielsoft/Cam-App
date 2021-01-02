@@ -29,6 +29,13 @@ class VideoController{
         })
     }
 
+    stopTimer() {
+        this.timer.prototype = () => {
+            //stop the timer function
+            clearInterval(this.timer)
+        }
+    }
+
     wait(limit) {
         return new Promise(resolve => setTimeout(resolve, limit));
         //return new Promise(resolve => setTimeout(() => {resolve}, this.vidLimit))
@@ -98,6 +105,7 @@ class VideoController{
             console.log(this.stop(video.srcObject))
         })
     }
-
-
 }
+
+
+// module.export = VideoController

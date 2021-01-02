@@ -21,8 +21,6 @@ const tenM = document.querySelector('.ten-minutes');
 const fifteenM = document.querySelector('.fifteen-minutes'); 
 
 
-const videocontroller = new VideoController('myvid', 20)
-
 const constraint = {
     video: true, 
     audio: true, 
@@ -52,6 +50,15 @@ class Controller1 {
         snapdb.push(appSchema);
     }
 
+    micSchema(voice) {
+        const micFunc = {
+            id: Date.now(), 
+            voice 
+        }
+
+        micArr.push(micFunc)
+    }
+
     async startVideo(vidLimit) {
        this.videoSchema(video, 'data.webm') //pushing to array
        getTotal.recordCounter() 
@@ -73,7 +80,7 @@ class Controller1 {
            resolve(vddb)
         })
 
-        videocontroller.stop(video)   
+        new VideoController('vidname', 500).stop(video)   
     }
 
     duplicateVideo =  {
@@ -166,39 +173,39 @@ const time = {
 
 const videoFunc = RecordFunc.prototype.videoFunc = () => {
     $('.xx').click(() => { //snap Pictures 
-        videocontroller.shutter()
+        new VideoController().shutter()
         getTotal.snapCounter(); //counter for snapped pic
     })
 
     $('.xy').click(() => { //start recording 
         console.log('STARTNG VIDEO')
         new Controller1().startVideo(video.duration); 
-        
-       // $('.xy').prop('disabled', true)
-        //endrecordElement.disabled = false;
     })
 
     $('.xz').click(() => { //ending recording
         new Controller1().endVideo()
-
     })
 
     $('.five-minutes').click((event) => { //5 minutes timer
-        videocontroller.timer(5); 
+        new VideoController().timer(5) 
        
     })
 
 
     $('.ten-minutes').click((event) => { //10  minutes timer
-        videocontroller.timer(10); 
-
+        new VideoController().timer(10) 
     })
 
     $('.fifteen-minutes').click((event) => { //15 minutes timer
-        videocontroller.timer(15); 
+        new VideoController().timer(15)  
     })
-
 }
 
 videoFunc(); 
 
+
+// module.export = {
+//     snapdb,
+//      micArr,
+//       vddb
+// }

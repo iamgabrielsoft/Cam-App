@@ -1,5 +1,4 @@
-const controller1 = new Controller1() //initiating the controller1 clas
- 
+
 const openNav = () => {
     document.querySelector(".sidenav").style.width = "250px";
     document.querySelector(".main").style.marginLeft = "250px"
@@ -80,7 +79,7 @@ const ConvertTheCanva = (arr = [])  => {
     ctx = canvas.getContext('2d');
     ctx.drawImage(video, 0, 0, 100, 110);
 
-    controller1.Snapschema(video, saveinput.value)
+    new Controller1().Snapschema(video, saveinput.value)
     saveinput.innerHTML = `<input type="text" class="form-control nameImage" aria-describedby="emailHelp">`
     savebtn.innerHTML = `<a class="download" title="Download" data-toggle="tooltip"><i class="fas fa-download" style="color: green"></i></a>`
 
@@ -174,3 +173,11 @@ const deletingEachPic = (element) => {
     let key = element.target; 
     console.log(key.parentNode.parentNode.removeChild(key.parentNode))
 }
+
+
+
+// module.export = { 
+//     ConvertTheCanva,
+//     openNav, 
+//     closeNav 
+// }

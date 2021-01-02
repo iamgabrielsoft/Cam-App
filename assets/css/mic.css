@@ -15,9 +15,6 @@ html {
 }
 
 
-body {
-  width: 100%;
-}
 
 .button {
   transition: .4s ease-in-out, color .4s ease-in-out;
@@ -49,6 +46,20 @@ audio {
 .sidebar {
   margin-top: -400px !important;
 }
+
+
+.delete-Audio {
+  width: 100px; 
+  object-fit: cover;
+  border-radius: 20px;
+  outline-style: none;
+  list-style-type: none;
+}
+
+.delete-Audio:hover {
+  background-color: red;
+}
+
 
 
 @keyframes spin { 
