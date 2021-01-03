@@ -1,7 +1,8 @@
 
 const y = $('.shutterCheck').change(() => {
     //disabled the shutter
-   y = new Shutter().stopAnimate()
+   var y = new Shutter().stopAnimate(); 
+   
    console.log(y)
 })
 
@@ -11,6 +12,9 @@ $('.timerCheck').change(() => {
     new VideoController().stopTimer() 
     //disabled the timer
 })
+
+
+
 
 $('.effectCheck').change(() => {
     console.log('effect')

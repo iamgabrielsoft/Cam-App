@@ -55,40 +55,31 @@ body {
   .video {
       width: 500px;
       height: 400px; 
-      margin-left: 100px;
-      
-  }
-   
-
-  .section {
-    text-align: center; 
-    display: inline-flexbox;
-    
+      margin-right: 300px;
+      padding-top:  40px;  
+      margin-bottom: 40px;
   }
 
-  .xx {
-    margin-right: 100px;
-  }
+
 
   .mainButton {
-   margin-bottom: -1120px;
-    margin-right: 60px;
+    margin-top: 600px;
+    margin-right:50px;
+    scroll-padding-block-end: 20px;
     width: 100px;
-    text-align: center !important;
     object-fit: contain;
+
   }
 
 
   .sidebar {
-    margin-top: 80px;
-    margin-right: -40px;
+    margin-top: 120px;
     width: 250px;
     height: 500px;
-    float: right;
     background-color: #ddd; 
     overflow-x: hidden;
     overflow-y: scroll;
-
+    right: 100px;
   }
 
   .deleteAll{
@@ -119,10 +110,6 @@ body {
     color: green;
   }
 
-  .deletecanvas:hover, .deletevid:hover { 
-    color: red;
-    transition: 0.3s;
-  }
 
   button {
     background-color: #4CAF50;
@@ -157,10 +144,7 @@ body {
   }
   
   /* Add padding and center-align text to the container */
-  .container {
-    padding: 16px;
-    text-align: center;
-  }
+
   
   /* The Modal (background) */
   .modal {
@@ -209,7 +193,6 @@ body {
   .clearfix::after {
     content: "";
     clear: both;
-    display: table;
   }
   
   /* Change styles for cancel button and delete button on extra small screens */
@@ -298,7 +281,6 @@ body {
   button {
     display: inline-block;
     vertical-align: middle;
-    
     margin: .20rem;
     font-size: 1rem;
     color: #666666;

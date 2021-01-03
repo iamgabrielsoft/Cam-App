@@ -66,6 +66,3 @@ class ShutterApp {
 		return ConvertTheCanva(snapdb);
 	}
 }
-
-
-// module.export = Shutter, ShutterApp, SPEED_NUM

@@ -7,8 +7,8 @@
 <meta name="Description" content="CamApp"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.6.1/RecordRTC.js"></script>
 <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
 <link rel="icon" href="assets/favicon/camera.png" type="image/x-icon" />
@@ -28,7 +28,6 @@
             <p class="display"> File Downloaded</p>
             <button class="btn btn-primary btn-sm notify">x</button>
           
-        </div>
         </div>
     </div>
       
@@ -56,7 +55,6 @@
                 <div class="main">
                     <span class="openNav" onclick="openNav()">&#9776; Menu</span>
                 </div> 
-                <p id="sec">sec</p>
             </div>
 
             <div class="col-sm-3 col-md-3 sidebar">
@@ -67,38 +65,38 @@
                     <div class="col-sm-6">
                         <p class="numberofvideos">Videos: <span class="col totalVideo">0</span></p>
                     </div>
-                    <div class="col-sm-6">    
-                        <button class="open-model" onclick="document.getElementById('id01').style.display='block'">Delete All</button>
+                    <!--<div class="col-sm-6">    
+                        <button class="open-model" onclick="document.getElementById('id01').style.display='block'" style="margin-bottom: 10px; margin-left: 50px;">Delete All</button>
                         <div id="id01" class="modal">
-                        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
-                            <form class="modal-content" action="/action_page.php">
-                                <div class="container">
-                                    <h1>Delete Account</h1>
-                                    <p>Are you sure you want to delete? </p>
-                                    <div class="input-group mb-3 row align">
-                                        <div class="input-group-prepend col-sm-6 ">
-                                          <div class="input-group-text">
-                                            <input type="checkbox" class="deletedpic" aria-label="Checkbox for following text input"> Pictures
-                                          </div>
-                                        </div>
-
-                                        <div class="input-group-prepend col-sm-6 checkVid">
-                                            <div class="input-group-text">
-                                              <input type="checkbox" class="deletedvid" aria-label="Checkbox for following text input"> Videos
+                             <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+                                <form class="modal-content">
+                                    <div class="container">
+                                        <h1>Delete Account</h1>
+                                        <p>Are you sure you want to delete? </p>
+                                        <div class="input-group mb-3 ">
+                                            <div class="input-group-prepend col-sm-6 ">
+                                                <div class="input-group-text">
+                                                    <input type="checkbox" class="deletedpic" aria-label="Checkbox for following text input"> Videos
+                                                </div>
                                             </div>
-                                          </div>
-                                        
+
+                                            <div class="input-group-prepend col-sm-6 ">
+                                                <div class="input-group-text">
+                                                    <input type="checkbox" class="deletedpic" aria-label="Checkbox for following text input"> Pictures                                                </div>
+                                            </div>
+                                            
                                         </div>
-                                    
-                                    <div class="clearfix">
-                                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                                        <button class="deletebtn" type="button" onclick="document.getElementById('id01').style.display='none'" class="deletebtn">Delete</button>
+                                        
+                                        <div class="clearfix">
+                                            <button type="button" class="cancelbtn" onclick="document.getElementById('id01').style.display='none'"  style="width: 200px; margin-right: 50px;">Cancel</button>
+                                            <button type="button" class="deletebtn"  onclick="document.getElementById('id01').style.display='none'" style="width:200px;">Delete</button>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
                         </div>
 
-                    </div>
+                    </div>-->
+                    
                 </div>
 
                 <div class="both">
@@ -147,9 +145,9 @@
             </div>
         
             <div class="section">
-                <div class="inner-container">
+                <div class="inner-container" style="width: 500px; margin-right: 60px;">
                     <div class="shutter js-shutter">
-                        <svg id="shutters_svg1" class="shutters_svg" data-name="shutters_svg" xmlns="http://www.w3.org/2000/svg" width="1001.5" height="996.5" viewBox="0 0 1001.5 996.5">
+                        <svg id="shutters_svg1" class="shutters_svg" data-name="shutters_svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1001.5 996.5">
                                 <g id="shutters">
                                     <path id="shutter1" d="M495.6,509C466.2,673.8,390.8,839,296,1000H707C704,784.9,608.2,584.6,495.6,509Z" transform="translate(0 -3.5)" fill="#28292e" stroke-width="1" stroke="#000"/>
                                     <path id="shutter2" d="M296,1000c90.9-137,167-319,203-499C368,593,201.3,655.6,0,707Z" transform="translate(0 -3.5)" fill="#28292e" stroke-width="1" stroke="#000"/>
@@ -161,21 +159,23 @@
                                     <path id="shutter8" d="M499,509c169.3,38.9,335.9,109.1,500,209L707,1000c-6-259-117-423-208-491" transform="translate(0 -3.5)" fill="#28292e" stroke-width="1" stroke="#000"/>
                                 </g>
                         </svg>
-                            <section class="insidesec">
-                                <video class="video" height="500" width="400" controls="true" crossorigin="anonymous" autoplay></video>
-                            </section>
                     </div>
+                    <section>
+                        <video class="video" controls="true" autoplay></video>
+                    </section>
                 </div>
                 <div class="row">
-                    <button type="button" class="btn btn-primary btn-lg xy mainButton"><i class="fas fa-video spinner"style="color:red"></i> </button>
-                <button type="button" class="btn btn-primary btn-lg xz mainButton" ><i class="fa fa-video-slash" aria-hidden="true"></i> </button>
-                <button type="button" class="btn btn-primary btn-lg xx js-play-btn mainButton" ><i class="fa fa-camera " aria-hidden="true"></i> </button>
+                    <button type="button" class="btn btn-primary btn-lg xx js-play-btn mainButton" style="margin-left: 50px;"><i class="fa fa-camera " aria-hidden="true"></i> </button>
+                    <button type="button" class="btn btn-primary btn-lg xy mainButton" ><i class="fas fa-video spinner" style="color:red; "></i> </button>
+                    <button type="button" class="btn btn-primary btn-lg xz mainButton" ><i class="fa fa-video-slash" aria-hidden="true"></i> </button>
+                  
                 </div>
             </div>
         </div>
     </div>    
+    
 
-
+<script src="assets/controllers/preview.js"></script>
 <script src="assets/controllers/shutterController.js"></script>
 <script src="assets/controllers/videocontroller.js"></script>
 <script src="assets/controllers/controller1.js"></script>
@@ -186,4 +186,3 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
-

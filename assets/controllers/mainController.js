@@ -35,32 +35,6 @@ const getTotal = {
 
 
 
-//deleteAll Button 
-// $('.open-modal').click((event) => {
-//     $('.deletebtn').hide(); //hide the delete dialog
-//     $('.deletedpic').click(() => {
-//         $('.deletebtn').show("slow"); //show the delete dialog
-//         $('.deletebtn').click(() => {
-//            $('.deletedpic').prop('checked', false); 
-//            totalsnap.innerHTML = i = 0;
-//            snapdb = []; //clear the database
-//            ulPic.innerHTML = ' ' + '<h3>Picture Gallery</h3>';
-//            $('.deletedpic').prop('checked', false);
-//         })
-//     })
-
-//     $('.deletedvid').click(() => {
-//         $('.deletebtn').show("slow"); //show the delete dialog
-//         $('.deletebtn').click(() => {
-//             $('.deletedvid').prop('checked', false); 
-//             totalvideo.innerHTML = i = 0;
-//             vddb = []; //clear the database
-//             ulVid.innerHTML = ' ' + '<h3>Video Gallery<h3>';
-//             $('.deletedvid').prop('checked', false);
-//          })
-//     })
-// })
-
 
 const ConvertTheCanva = (arr = [])  => {
 
@@ -127,24 +101,18 @@ const ConvertTheCanva = (arr = [])  => {
         $('.savedpic').each((data) => {
         }).append(saveinput, savebtn).each(() => {
             $('.savebtn').click(() => {
-                    $(".popup-overlay, .popup-content").addClass("active")
-                    $('.close, .popup-overlay').on('click', () => {
-                        $('.popup-overlay, .popup-content').removeClass('active')
-                    })
-
-                    setTimeout(() => {
-                        $('.popup-overlay, .popup-content').removeClass('active')
-                    }, 5000);
-                
-
-                    const promise = new Promise((resolve, reject) => {
+                    return new Promise((resolve, reject) => {
                         canvas.toBlob((data) => {
                             a = document.createElement('a')
                             a.href = URL.createObjectURL(data);     
-                        
                             if(saveinput.value.length == " ") {
                                 console.log('empty field'); //notify the user on the input field 
-                                //throw in spinner
+                                $('.popup-overlay, .popup-content').addClass('active')
+                                $('.display').text('Try Naming Your Image!')
+                                setTimeout(() => {      
+                                    $('.popup-overlay, .popup-content').removeClass('active')
+                                }, 5000);
+
                                 
                             }else {
                                 //a.download = controller1.Snapschema(video, saveinput.value);
@@ -152,13 +120,18 @@ const ConvertTheCanva = (arr = [])  => {
                                 a.click(); 
                                 URL.revokeObjectURL(a.href); 
                                 resolve(data); 
+
+                                $(".popup-overlay, .popup-content").addClass("active")
+                                $('.close, .popup-overlay').on('click', () => {
+                                    $('.popup-overlay, .popup-content').removeClass('active')
+                                })
                             }
                             
                         }, 'image/png', 2.9) 
                     })
 
-                    promise.then((datalink) => {
-                        console.log(datalink)
+                    .then((data) => {
+                        console.log(data)
                     })
             })
         })
@@ -173,11 +146,3 @@ const deletingEachPic = (element) => {
     let key = element.target; 
     console.log(key.parentNode.parentNode.removeChild(key.parentNode))
 }
-
-
-
-// module.export = { 
-//     ConvertTheCanva,
-//     openNav, 
-//     closeNav 
-// }

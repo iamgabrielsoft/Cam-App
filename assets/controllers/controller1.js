@@ -187,6 +187,8 @@ const videoFunc = RecordFunc.prototype.videoFunc = () => {
     })
 
     $('.five-minutes').click((event) => { //5 minutes timer
+        //alert The User 
+        
         new VideoController().timer(5) 
        
     })
@@ -201,11 +203,5 @@ const videoFunc = RecordFunc.prototype.videoFunc = () => {
     })
 }
 
+
 videoFunc(); 
-
-
-// module.export = {
-//     snapdb,
-//      micArr,
-//       vddb
-// }
