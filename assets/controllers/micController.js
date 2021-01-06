@@ -30,8 +30,6 @@ if (navigator.mediaDevices.getUserMedia) {
 
     stop.onclick = () => {
       mediaRecorder.stop();
-      //mediaRecorder.state
-      //push into array
       new Controller1().micSchema(mediaRecorder)
       record.style.background = "";
       record.style.color = "";
@@ -90,10 +88,7 @@ if (navigator.mediaDevices.getUserMedia) {
 } else console.log('getUserMedia not supported on your browser!');
 
 
-
-
 const visualize = (stream) => {
-  if(!audioCtx) audioCtx = new AudioContext();
   
   const source = audioCtx.createMediaStreamSource(stream);
   const analyser = audioCtx.createAnalyser();
@@ -134,6 +129,3 @@ const visualize = (stream) => {
 window.onresize = () => {
   canvas.width = mainSection.offsetWidth;
 }
-
-
-// module.export = visualize

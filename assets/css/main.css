@@ -66,21 +66,30 @@ body {
     margin-top: 600px;
     margin-right:50px;
     scroll-padding-block-end: 20px;
-    width: 100px;
+    width: 60px; 
     object-fit: contain;
-
   }
 
+  .row {
+   display: inline-flexbox;
+  }
 
   .sidebar {
     margin-top: 120px;
-    width: 250px;
+    width: 280px;
     height: 500px;
     background-color: #ddd; 
     overflow-x: hidden;
     overflow-y: scroll;
     right: 100px;
   }
+  
+
+  .inline {
+    margin-left: -30px;
+  }
+
+
 
   .deleteAll{
     margin-left: 60px;
@@ -143,36 +152,6 @@ body {
     background-color: #f44336;
   }
   
-  /* Add padding and center-align text to the container */
-
-  
-  /* The Modal (background) */
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: #474e5d;
-    padding-top: 50px;
-  }
-  
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-  }
-  
-  /* Style the horizontal ruler */
-  hr {
-    border: 1px solid #f1f1f1;
-    margin-bottom: 25px;
-  }
    
   /* The Modal Close Button (x) */
 
@@ -292,4 +271,10 @@ body {
     border: 1px solid #666666;
     background: #666666;
     color: #ffffff;
+  }
+
+  .countdown {
+    color: red !important;
+    font-weight: 500;
+    font-size: large;
   }

@@ -18,6 +18,7 @@
 <link  rel="stylesheet" href="assets/css/main.css">
 <link  rel="stylesheet" href="assets/css/spinner.css">
 <link  rel="stylesheet" href="assets/css/modal.css">
+<link rel="stylesheet" href="assets/css/mic.css">
 <link rel="stylesheet" href="assets/css/responsive.css">
 <title>Cam-App</title>
 </head>
@@ -56,15 +57,19 @@
                     <span class="openNav" onclick="openNav()">&#9776; Menu</span>
                 </div> 
             </div>
-
+           
             <div class="col-sm-3 col-md-3 sidebar">
                 <div class="row data">
                     <div class="col-sm-6">
                        <p class="numberofpic">Shot:<span class="col totalSnap">0</span></p> 
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 inline">
                         <p class="numberofvideos">Videos: <span class="col totalVideo">0</span></p>
                     </div>
+                    <div class="col-sm-6">
+                        <p class="numberofrecords">Records: <span class="col totalMic">0</span></p>
+                    </div>
+                    
                     <!--<div class="col-sm-6">    
                         <button class="open-model" onclick="document.getElementById('id01').style.display='block'" style="margin-bottom: 10px; margin-left: 50px;">Delete All</button>
                         <div id="id01" class="modal">
@@ -99,52 +104,41 @@
                     
                 </div>
 
-                <div class="both">
+               <div class="both">
                     <ul class="nav nav-tabs">
                         <li class="active spin"><a data-toggle="tab" href="#home">Pictures</a></li>
                         <li><a data-toggle="tab" href="#menu1">Videos</a></li>
+                        <li><a data-toggle="tab" class="inline" href="#menu2">Records</a></li>
                     </ul>
 
                     <div class="tab-content clearfix">
                         <div id="home" class="tab-pane fade in active data-nav">
                             <ul class="savedpic">
-                                <h3>Picture Gallery</h3>
-                                <!--<canvas class="canva"></canvas>-->
-                               <!--<a class="delete" title="Delete" data-toggle="tooltip" ><i class="fas fa-trash" style="color:red">&#xE872;</i></a>--> 
-                                <!--<a class="download" title="Download" data-toggle="tooltip"><i class="fas fa-download" style="color: green"></i></a>-->    
-                               <!--
-
-                                    <div class="dropdown">
-                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-share-alt"></i>Share</a>
-                                    <div class="dropdown-menu drop" aria-labelledby="dropdownMenuLink" >
-                                      <a class="dropdown-item" href="#"><i class="fab fa-instagram"></i>Instagram</a><br>
-                                      <a class="dropdown-item" href="#"><i class="fab fa-twitter"></i>twitter</a><br>
-                                      <a class="dropdown-item" href="#"><i class="fab fa-facebook-f"></i>Facebook</a>
-                                    </div>
-                                </div>
-                               -->
-                               
-                               
+                                <h3>Picture</h3>
                                <i class="fas fa-image"></i>
-                               
-                               
-                               <!-- Display Saved Photos -->
                             </ul> 
                         </div>
                           
-                          <div id="menu1" class="tab-pane fade">
-                                <ul class="savedvideo">
-                                    <h3>Video Gallery </h3>
-                                    <!--<canvas class="canva"></canvas>-->
-                                    <!-- Display Saved Videos -->
-                                    <i class="fas fa-video    "></i>
-                                </ul>
-                          </div>
+                        <div id="menu1" class="tab-pane fade">
+                            <ul class="savedvideo">
+                                <h3>Video</h3>
+                                <i class="fas fa-video    "></i>
+                            </ul>
+                        </div>
+                        <div id="menu2" class="tab-pane fade">
+                            <ul class="savedrecord">
+                                <h3>Record<h3>
+                            </ul>
+                      </div>
                     </div>
                 </div>
             </div>
-        
+
+            
             <div class="section">
+                <div class="timer">
+                    <p class="countdown">Timer</p>
+                </div>
                 <div class="inner-container" style="width: 500px; margin-right: 60px;">
                     <div class="shutter js-shutter">
                         <svg id="shutters_svg1" class="shutters_svg" data-name="shutters_svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1001.5 996.5">
@@ -162,19 +156,31 @@
                     </div>
                     <section>
                         <video class="video" controls="true" autoplay></video>
+                        <canvas class="visualizer"></canvas>
                     </section>
+                    <!-- <section>
+                        <canvas class="visualizer"></canvas>
+                    </section> -->
                 </div>
                 <div class="row">
-                    <button type="button" class="btn btn-primary btn-lg xx js-play-btn mainButton" style="margin-left: 50px;"><i class="fa fa-camera " aria-hidden="true"></i> </button>
+                    <button type="button" class="btn btn-primary btn-lg xx js-play-btn mainButton"><i class="fa fa-camera " aria-hidden="true"></i> </button>
                     <button type="button" class="btn btn-primary btn-lg xy mainButton" ><i class="fas fa-video spinner" style="color:red; "></i> </button>
                     <button type="button" class="btn btn-primary btn-lg xz mainButton" ><i class="fa fa-video-slash" aria-hidden="true"></i> </button>
-                  
+                    <button class="js-record button button--record micButton" ><i class="fa fa-microphone" aria-hidden="true" style="width: -10px;"></i></button>
+                    <button class="js-stop button button--play button--disabled micButton"style="margin-right: -500px;" ><i class="fa fa-microphone-slash" aria-hidden="true" style="width: -10px;"></i></button>
+                    
+                    <div class="row-mic">
+                        
+                    </div>
+                    
                 </div>
             </div>
         </div>
     </div>    
     
 
+
+    
 <script src="assets/controllers/preview.js"></script>
 <script src="assets/controllers/shutterController.js"></script>
 <script src="assets/controllers/videocontroller.js"></script>

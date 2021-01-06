@@ -26,7 +26,7 @@ const getTotal = {
     }, 
 
     miCounter: () => {
-        for(let i = 0; i<=micArr.length; i++){
+        for(let i = 0; i <=micArr.length; i++) {
             if(micArr[i] == null) totalMic.innerHTML = i; 
         }
     }
@@ -97,7 +97,6 @@ const ConvertTheCanva = (arr = [])  => {
     })
 
 
-
         $('.savedpic').each((data) => {
         }).append(saveinput, savebtn).each(() => {
             $('.savebtn').click(() => {
@@ -142,7 +141,45 @@ const ConvertTheCanva = (arr = [])  => {
 }
 
 
-const deletingEachPic = (element) => {
-    let key = element.target; 
-    console.log(key.parentNode.parentNode.removeChild(key.parentNode))
+const deletingEachPic = (event) => {
+    const key = event.target; 
+    console.log(key)
 }
+
+
+
+
+const videoFunc = RecordFunc.prototype.videoFunc = () => {
+    $('.xx').click(() => { //snap Pictures 
+        new VideoController().shutter()
+        getTotal.snapCounter(); //counter for snapped pic
+    })
+
+    $('.xy').click(() => { //start recording 
+        console.log('STARTNG VIDEO')
+        new Controller1().startVideo(video.duration); 
+    })
+
+    $('.xz').click(() => { //ending recording
+        new Controller1().endVideo()
+    })
+
+    $('.five-minutes').click((event) => { //5 minutes timer
+        //alert The User 
+        new VideoController().timer(5 %60) 
+       
+    })
+
+
+    $('.ten-minutes').click((event) => { //10  minutes timer
+        new VideoController().timer(10) 
+    })
+
+    $('.fifteen-minutes').click((event) => { //15 minutes timer
+        new VideoController().timer(15)  
+    })
+
+}
+
+
+videoFunc(); 

@@ -15,18 +15,14 @@ class VideoController{
 
 
     timer(TimeLimit) {
-        const setTimer = setInterval(() => {
-            console.log(TimeLimit--);
-            if(TimeLimit == 0) {
-                ConvertTheCanva(snapdb)
-                //represent this on the Interface
-                console.log('Hit Jackpot')
+        setInterval(() => {
+            timer.innerHTML = TimeLimit--;
+            console.log(TimeLimit); 
+            if(TimeLimit == 0){
+                ConvertTheCanva(snapdb); 
+
             }
         }, 1000);
-
-        const  promise = new Promise((resolve,  reject) => {
-            resolve(setTimer);
-        })
     }
 
     stopTimer() {

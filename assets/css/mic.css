@@ -7,18 +7,12 @@ html {
   font-size: 10px;
 }
 
-.audio {
-    width: 0;
-    height: 0;
-    opacity: 0;
-    visibility: 0;
+audio {
+  width: 200px;
 }
-
-
 
 .button {
   transition: .4s ease-in-out, color .4s ease-in-out;
-  position: relative;
   width: 8rem;
   height: 8rem;
   margin: 0 1rem;
@@ -33,20 +27,16 @@ html {
 }
 
 
-audio {
-  width: 200px;
-  margin-top: 20px;
+.micButton {
+  margin-top: 600px;
 }
 
 .labelTag {
-  font-size: 50px;
+  font-size: 30px;
+  text-align: center;
 }
 
 /* Recorded SideNav */
-.sidebar {
-  margin-top: -400px !important;
-}
-
 
 .delete-Audio {
   width: 100px; 
@@ -56,21 +46,7 @@ audio {
   list-style-type: none;
 }
 
+
 .delete-Audio:hover {
   background-color: red;
 }
-
-
-
-@keyframes spin { 
-    from { 
-      transform: rotate(0deg); 
-    } to { 
-      transform: rotate(360deg); 
-    }
-  }
-  
-  * {
-    box-sizing: border-box;
-  }
-  

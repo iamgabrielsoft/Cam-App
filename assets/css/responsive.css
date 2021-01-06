@@ -9,3 +9,17 @@
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
   }
+
+
+  @keyframes spin { 
+    from { 
+      transform: rotate(0deg); 
+    } to { 
+      transform: rotate(360deg); 
+    }
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
