@@ -7,6 +7,7 @@
 <meta name="Description" content="Enter your description here"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
+<link rel="stylesheet" href="assets/css/main.css">
 <link rel="stylesheet" href="assets/css/about.css">
 <title>Cam-App|About Page</title>
 </head>
@@ -16,25 +17,11 @@
             <div class="sidenav">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <a href="./index.html">Home</a>
-                <a href="#">Shutter Timer</a>
-                <a href="./microphone.html">Microphone</a>
-                <div class="d-flex">
-                    <div class="dropdown mr-1">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">Timer</a>
-                         <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                        <a class="dropdown-item five-minutes" >5s</a>
-                        <a class="dropdown-item ten-minutes" >10s</a>
-                        <a class="dropdown-item fifteen-minutes">15s</a>
-                      </div>
-                    </div>
-                </div>
                 <a href="./settings.html">Settings</a>
-                <a href="#">About</a>
             </div>
             <div class="main">
                 <span class="openNav" onclick="openNav()">&#9776; Menu</span>
             </div> 
-            <p id="sec">sec</p>
         </div>
 
         <div class="container-fluid">
@@ -57,12 +44,13 @@
                 <span class="inner">
                     <a href="./index.html"><button type="button btn btn-primary btn-lg xy" class="btn">Get Back!</button></a>
                 </span>
-                
             </p>
         </div>
     </div>
 
-    <script src="src/js/about.js"></script>
+
+<script src="assets/controllers/mainController.js"></script>
+<script  src="src/about.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>

@@ -33,11 +33,7 @@ const getTotal = {
 }
 
 
-
-
-
 const ConvertTheCanva = (arr = [])  => {
-
     var canvas = document.createElement('canvas');
     var savebtn = document.createElement('button'); 
     var saveinput = document.createElement('input')
@@ -73,7 +69,7 @@ const ConvertTheCanva = (arr = [])  => {
         `
     })
 
-
+    
     const post = {
         twitt : (dataurl) => {
             x = dataurl.toDataURL('image/png', 0.9); 
@@ -97,7 +93,7 @@ const ConvertTheCanva = (arr = [])  => {
     })
 
 
-        $('.savedpic').each((data) => {
+        $('.savedpic').each(() => {
         }).append(saveinput, savebtn).each(() => {
             $('.savebtn').click(() => {
                     return new Promise((resolve, reject) => {
@@ -136,16 +132,16 @@ const ConvertTheCanva = (arr = [])  => {
         })
 
     $('.deletecanvas').click((event) => {
-        deletingEachPic(event)
+        deletingEachPic(event);
+
     })
 }
 
 
 const deletingEachPic = (event) => {
     const key = event.target; 
-    console.log(key)
+    console.log(key.parentNode.parentNode.removeChild(key.parentNode))
 }
-
 
 
 
@@ -161,7 +157,7 @@ const videoFunc = RecordFunc.prototype.videoFunc = () => {
     })
 
     $('.xz').click(() => { //ending recording
-        new Controller1().endVideo()
+       // new Controller1().endVideo()
     })
 
     $('.five-minutes').click((event) => { //5 minutes timer
@@ -183,3 +179,4 @@ const videoFunc = RecordFunc.prototype.videoFunc = () => {
 
 
 videoFunc(); 
+

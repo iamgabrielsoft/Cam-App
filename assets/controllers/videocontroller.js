@@ -1,11 +1,21 @@
 
 const shutterinit = new ShutterApp()
-const vidLength  = 2; 
+var mediaSource = new MediaSource();
+
+
+var options = {
+    mimeType: 'video/webm;codecs=vp9', 
+    bitsPerSecond: 100000
+};
+
+
+const recordedBlobs = [];
 
 class VideoController{
     constructor(vidName, vidLimit) {
         this.vidName = vidName, 
-        this.vidLimit = vidLimit
+        this.vidLimit = vidLimit,
+        this.arr = []; 
     }
 
     async shutter() {
@@ -25,83 +35,110 @@ class VideoController{
         }, 1000);
     }
 
-    stopTimer() {
-        this.timer.prototype = () => {
-            //stop the timer function
-            clearInterval(this.timer)
+    successCallback(stream) {
+        console.log('getUserMedia() got stream: ', stream);
+        window.stream = stream;
+        video.srcObject = stream;
+      }
+
+    errorCallback(error) {
+        console.log('navigator.getUserMedia error: ', error);
+    }
+
+
+    handleDataActivitie(event) {
+        if(event.data && event.data.size > 0 )  return recordedBlobs.push(event.data);
+    }
+
+    handleSourceOpen(event) {
+        console.log('MediaSource opened');
+        var sourceBuffer = mediaSource.addSourceBuffer('video/webm; codecs="vp8"');
+        console.log('Source buffer: ', sourceBuffer);
+      }
+
+
+    handleStop(event) {
+        console.log('Recorder stopped: ', event);
+        console.log('Recorded Blobs: ', recordedBlobs);
+    }
+      
+
+    toggleRecording() {
+        if (startrecordElement.innerHTML === '<i class="fas fa-video-slash"></i>') this.startRecording(); 
+
+        else {
+
+          startrecordElement.innerHTML = '<i class="fas fa-video-slash"></i>';
+          this.stopRecording()
+          playButton.disabled = false;
+          //downloadButton.disabled = false;
         }
     }
 
-    wait(limit) {
-        return new Promise(resolve => setTimeout(resolve, limit));
-        //return new Promise(resolve => setTimeout(() => {resolve}, this.vidLimit))
-    }
-
-    startRecord(video, length) {
-        var vidChunks = []; 
-        let x = length = 500/ vidLength
-
-        var options = {
-            mimeType: 'video/webm;  codecs=vp9', 
-            audioBitsPerSecond: 50000, 
-            state: 'active', 
-            videoBitsPerSecond: 250000
+    startRecording() {
+        try {
+          var mediaRecorder = new MediaRecorder(window.stream, options);
+        } catch (e0) {
+          console.log('Unable to create MediaRecorder with options Object: ', options, e0);
+          try {
+            options = {
+              mimeType: 'video/webm;codecs=vp8', 
+              bitsPerSecond: 100000
+            };
+            var mediaRecorder = new MediaRecorder(window.stream, options);
+          } catch (e1) {
+            console.log('Unable to create MediaRecorder with options Object: ', options, e1);
+            try {
+                
+              options = 'video/mp4';
+              var mediaRecorder = new MediaRecorder(window.stream, options);
+            } catch (e2) {
+              alert('MediaRecorder is not supported by this browser.');
+              console.error('Exception while creating MediaRecorder:', e2);
+              return;
+            }
+          }
         }
 
         
-        var mediaRecorder = new MediaRecorder(video, options);
-        console.log(mediaRecorder)
-        const b = mediaRecorder.ondataavailable = event => vidChunks.push(event)
-        console.log(b)
-        console.log(mediaRecorder.stream) 
-        
-
-        // const stopped = new Promise((resolve, reject) => {
-        //     mediaRecorder.onstop = resolve; 
-        //     mediaRecorder.onerror = event => reject(console.log(event.name))
-        // })
-
-        // const recorded = this.wait(1000).then(() => {
-        //     mediaRecorder.state == "Recording" && mediaRecorder.stop()
-        // })
-
-        // console.log(stopped,  recorded)
+        console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
+        startrecordElement.innerHTML = '<i class="fas fa-video "></i>'
+        playButton.disabled = true;
+        this.handleStop(options)
+        this.handleDataActivitie(options); 
+        mediaRecorder.start(10); // collect 10ms of data
+        console.log('MediaRecorder started', mediaRecorder);
     }
 
-    stop(stream) {
-        console.log(stream)
+
+
+    play() {
+        var type = (recordedBlobs[0] || {}).type
+        var superBuffer = new Blob(recordedBlobs, {type});
+        //recordedVideo.src = window.URL.createObjectURL(superBuffer);
+        video.src = window.URL.createObjectURL(superBuffer)
     }
 
-    runing() {
-        $('.xy').click((event) => {
-            navigator.mediaDevices.getUserMedia(constraint)
-                .then((stream) => {
-                    video.srcObject = stream; 
-                    let x = video.captureStream = video.captureStream || video.mozCaptureStream
-                    return new Promise((resolve, reject) => {
-                        console.log(resolve(video.play()))
-                    })
-                })
-                .then(() => {
-                    this.startRecord(stream, vidLength); 
-                })
-                .then((chunks) => {
-                    const blob = new Blob([chunks], { type: 'video/webm'})
-                    console.log(blob)
-                    video.src = URL.createObjectURL(blob)
-                    //download video
-                })
 
-                .catch((err) => {
-                    console.log(err.name,  err)
-                })
-        })
+    stopRecording() {
+        //mediaRecorder.stop();
+        video.controls = true;
+    }
 
-        $('.xz').click(() => {
-            console.log(this.stop(video.srcObject))
+
+    download() {
+        var blob = new Blob(recordedBlobs, {type: 'video/webm'});
+        var url = window.URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = 'test.webm';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+            document.body.removeChild(a); 
+            window.URL.revokeObjectURL(url)
         })
     }
+    
 }
-
-
-// module.export = VideoController
