@@ -25,13 +25,12 @@ const stopmic = document.querySelector('.js-stop');
 const soundClips = document.querySelector('.savedrecord');
 const canvasV = document.querySelector('.visualizer');
 const recorderSection = document.querySelector('.recorder');
-// const downloadButton = document.querySelector('.load');
 stopmic.disabled = true;
 
 
 var canvasCtx = canvasV.getContext("2d");
 var audioCtx = new AudioContext()
-const videoController = new VideoController('hh', 8000)
+//const videoController = new VideoController('hh', 8000)
 
 
 const constraint = {
@@ -73,13 +72,14 @@ class Controller1 {
 
   async startVideo(vidLimit) {
      this.videoSchema(video, 'data.webm') //pushing to array'
-     videoController.toggleRecording()
-     videoController.startRecording()
-     getTotal.recordCounter() 
+     startRecording()
+     toggleRecording()
+     getTotal.recordCounter(); 
      this.staticVideo(vddb) 
      console.log(vddb)
-      if(vidLimit <= 500) console.log('Video too Long')
+     if(vidLimit <= 500) console.log('Video too Long')
   }
+
 
   staticVideo(arr = []) {
     const liVid = document.createElement('liVid'); 
@@ -106,14 +106,17 @@ class Controller1 {
                 </div>
             </div>
             <a id ="${console.log('Video with the Id of ', vid.id)}" class="deletevid" title="Delete" data-toggle="tooltip" ><i class="fas fa-trash deleteachpic">&#xE872;</i></a>
-            
         `
-
-        liVid.appendChild(downloadbtn)
+        liVid.appendChild(downloadbtn);
     })
 
     downloadbtn.addEventListener('click', () => {
-      videoController.download()
+      download()
+    })
+
+    $('canvas').click(() => {
+      play()
+      console.log('plying the video')
     })
 
   } 
@@ -124,11 +127,11 @@ class Controller1 {
 function RecordFunc () {
   navigator.mediaDevices.getUserMedia(constraint)
   .then((stream) => {
-    videoController.successCallback(stream)
+    successCallback(stream)
   
   })
   .catch((err) => {
-    videoController.errorCallback(err)
+    errorCallback(err)
     location.href ='./404.html'
   })
 }
