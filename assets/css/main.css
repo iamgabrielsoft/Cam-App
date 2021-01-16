@@ -134,18 +134,7 @@ body {
   button:hover {
     opacity:1;
   }
-  
-  /* Float cancel and delete buttons and add an equal width */
-  .cancelbtn, .deletebtn {
-    float: left;
-    width: 50%;
-  }
-  
-  /* Add a color to the cancel button */
-  .cancelbtn {
-    background-color: #ccc;
-    color: black;
-  }
+
   
   /* Add a color to the delete button */
   .deletebtn {
@@ -195,7 +184,9 @@ body {
     display: inline-flex; 
   }
 
-  canvas  {
+
+
+  canvas, .storedvid {
     margin-left: -40px; 
     margin-top: 30px;
     cursor: pointer;
@@ -203,6 +194,11 @@ body {
     -webkit-transition: all 1s;
     -moz-transition: all 1s;
     -o-transition: all 1s;
+  }
+
+  .storedvid {
+    width: 200px;
+    height: 200px;
   }
 
   canvas:hover {

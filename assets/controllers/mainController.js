@@ -1,4 +1,4 @@
-
+const shutterinit = new ShutterApp()
 const openNav = () => {
     document.querySelector(".sidenav").style.width = "250px";
     document.querySelector(".main").style.marginLeft = "250px"
@@ -69,29 +69,6 @@ const ConvertTheCanva = (arr = [])  => {
         `
     })
 
-    
-    const post = {
-        twitt : (dataurl) => {
-            x = dataurl.toDataURL('image/png', 0.9); 
-            console.log(x)
-            var datalink = $('.twitter').attr('href', `https://twitter.com/share?text=${x}`);  //place the image on the twitter post 
-            $('.twitter').attr('target', datalink);
-        }, 
-
-        fb : (dbpost) => {
-            //process canvas posting
-            console.log(dbpost)
-        }
-    }
-
-    $('.twitter').click(() => {
-       post.twitt(canvas); //post the canvas image to twitter
-    })
-
-    $('.facebook').click(() => {
-        post.fb(canvas)
-    })
-
 
         $('.savedpic').each(() => {
         }).append(saveinput, savebtn).each(() => {
@@ -131,10 +108,15 @@ const ConvertTheCanva = (arr = [])  => {
             })
         })
 
+        $('.canvas').click(() => {
+            new Slider({})
+        })
+
     $('.deletecanvas').click((event) => {
         deletingEachPic(event);
 
     })
+
 }
 
 
@@ -161,18 +143,18 @@ const videoFunc = RecordFunc.prototype.videoFunc = () => {
     })
 
     $('.five-minutes').click((event) => { //5 minutes timer
-        //alert The User 
-        new VideoController().timer(5 %60) 
-       
+        new VideoController().timer(5);  
     })
 
 
     $('.ten-minutes').click((event) => { //10  minutes timer
-        new VideoController().timer(10) 
+        new VideoController().timer(10); 
+        
     })
 
     $('.fifteen-minutes').click((event) => { //15 minutes timer
-        new VideoController().timer(15)  
+        new VideoController().timer(15); 
+        
     })
 
 }

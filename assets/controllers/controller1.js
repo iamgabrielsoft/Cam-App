@@ -19,7 +19,7 @@ const min = document.createElement('min')
 const fiveM = document.querySelector('.five-minutes'); 
 const tenM = document.querySelector('.ten-minutes'); 
 const fifteenM = document.querySelector('.fifteen-minutes'); 
-const timer = document.querySelector('.countdown')
+var timer = document.querySelector('.countdown')
 const record = document.querySelector('.js-record');
 const stopmic = document.querySelector('.js-stop');
 const soundClips = document.querySelector('.savedrecord');
@@ -27,16 +27,30 @@ const canvasV = document.querySelector('.visualizer');
 const recorderSection = document.querySelector('.recorder');
 stopmic.disabled = true;
 
+const constraint = {
+  video: true, 
+  audio: true, 
+} 
 
 var canvasCtx = canvasV.getContext("2d");
-var audioCtx = new AudioContext()
-//const videoController = new VideoController('hh', 8000)
+var audioCtx = new AudioContext(); 
+const videoController = new VideoController('hh', 8000)
 
 
-const constraint = {
-    video: true, 
-    audio: true, 
-} 
+function RecordFunc () {
+  navigator.mediaDevices.getUserMedia(constraint)
+  .then((stream) => {
+    videoController.successCallback(stream)
+  
+  })
+  .catch((err) => {
+    videoController.errorCallback(err)
+    location.href ='./404.html'
+  })
+}
+
+
+
 
 class Controller1 {
   constructor(){}
@@ -73,7 +87,7 @@ class Controller1 {
   async startVideo(vidLimit) {
      this.videoSchema(video, 'data.webm') //pushing to array'
      startRecording()
-     toggleRecording()
+     videoController.toggleRecording()
      getTotal.recordCounter(); 
      this.staticVideo(vddb) 
      console.log(vddb)
@@ -82,61 +96,54 @@ class Controller1 {
 
 
   staticVideo(arr = []) {
-    const liVid = document.createElement('liVid'); 
-    const videocanvas = document.createElement('canvas'); 
+    const liVid = document.createElement('liVid');  
     var downloadbtn = document.createElement('button')
+    var storedvid = document.createElement('video')
     
     ulVid.appendChild(liVid)
-    ulVid.appendChild(videocanvas); 
-    var ctx = videocanvas.getContext('2d'); 
-    ctx.drawImage(video, 0, 0, 100, 110); 
+    ulVid.appendChild(storedvid);
+
 
     downloadbtn.setAttribute('class', 'vidbtn')
     downloadbtn.innerHTML = `<a class="download" title="Download" data-toggle="tooltip"><i class="fas fa-download" style="color: green"></i></a>`
+    storedvid.setAttribute('class', 'storedvid')
+
 
     arr.forEach((vid) => {
         liVid.innerHTML = `
-            <div class="dropdown dropdown-class sharebtn">
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-share-alt"></i> Share
-                </a>
-                <div class="dropdown-menu drop" aria-labelledby="dropdownMenuLink" >
-                        <a class="dropdown-item twitter" href="#"><i class="fab fa-twitter"></i>twitter</a><br>
-                        <a class="dropdown-item facebook" href="#"><i class="fab fa-facebook-f"></i>Facebook</a>
-                </div>
-            </div>
-            <a id ="${console.log('Video with the Id of ', vid.id)}" class="deletevid" title="Delete" data-toggle="tooltip" ><i class="fas fa-trash deleteachpic">&#xE872;</i></a>
+            <a id ="${console.log('Video with the Id of ', vid.id)}" class="deletevid" title="Delete" data-re="tooltip" ><i class="fas fa-trash deleteachpic">&#xE872;</i></a>
         `
         liVid.appendChild(downloadbtn);
+        
     })
 
-    downloadbtn.addEventListener('click', () => {
-      download()
+
+    var playFunc = RecordFunc.prototype.play = () => {
+      var type = (recordedState[0] || {}).type;
+        var superBuffer = new Blob(recordedState, {type});
+        storedvid.src = window.URL.createObjectURL(superBuffer);
+        video.src = window.URL.createObjectURL(superBuffer)
+    }
+
+
+
+    $('.storedvid').click(() => {
+      playFunc() 
     })
 
-    $('canvas').click(() => {
-      play()
-      console.log('plying the video')
+
+    $('.download').click(() => {
+      videoController.download()
     })
 
   } 
 
 }
 
-
-function RecordFunc () {
-  navigator.mediaDevices.getUserMedia(constraint)
-  .then((stream) => {
-    successCallback(stream)
-  
-  })
-  .catch((err) => {
-    errorCallback(err)
-    location.href ='./404.html'
-  })
-}
-
 RecordFunc()
+
+
+
 
 
 var canvasCtx = canvasV.getContext("2d");
@@ -150,7 +157,6 @@ if (navigator.mediaDevices.getUserMedia) {
       mediaRecorder.start();
       mediaRecorder.state
       record.style.background = "red";
-
       stop.disabled = false;
       record.disabled = true;
     }
@@ -215,8 +221,6 @@ if (navigator.mediaDevices.getUserMedia) {
   navigator.mediaDevices.getUserMedia({audio: true}).then(onSuccess, onError);
 
 } else console.log('getUserMedia not supported on your browser!');
-
-
 
 
 const visualize = (stream) => {

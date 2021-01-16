@@ -20,6 +20,7 @@
 <link  rel="stylesheet" href="assets/css/modal.css">
 <link rel="stylesheet" href="assets/css/mic.css">
 <link rel="stylesheet" href="assets/css/responsive.css">
+<link rel="stylesheet" href="assets/css/preview.css">
 <title>Cam-App</title>
 </head>
 <body>
@@ -67,38 +68,6 @@
                     <div class="col-sm-6">
                         <p class="numberofrecords">Records: <span class="col totalMic">0</span></p>
                     </div>
-                    
-                    <!--<div class="col-sm-6">    
-                        <button class="open-model" onclick="document.getElementById('id01').style.display='block'" style="margin-bottom: 10px; margin-left: 50px;">Delete All</button>
-                        <div id="id01" class="modal">
-                             <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
-                                <form class="modal-content">
-                                    <div class="container">
-                                        <h1>Delete Account</h1>
-                                        <p>Are you sure you want to delete? </p>
-                                        <div class="input-group mb-3 ">
-                                            <div class="input-group-prepend col-sm-6 ">
-                                                <div class="input-group-text">
-                                                    <input type="checkbox" class="deletedpic" aria-label="Checkbox for following text input"> Videos
-                                                </div>
-                                            </div>
-
-                                            <div class="input-group-prepend col-sm-6 ">
-                                                <div class="input-group-text">
-                                                    <input type="checkbox" class="deletedpic" aria-label="Checkbox for following text input"> Pictures                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                        
-                                        <div class="clearfix">
-                                            <button type="button" class="cancelbtn" onclick="document.getElementById('id01').style.display='none'"  style="width: 200px; margin-right: 50px;">Cancel</button>
-                                            <button type="button" class="deletebtn"  onclick="document.getElementById('id01').style.display='none'" style="width:200px;">Delete</button>
-                                        </div>
-                                    </div>
-                                </form>
-                        </div>
-
-                    </div>-->
                     
                 </div>
 
@@ -156,14 +125,12 @@
                         <video class="video" controls="true" autoplay></video>
                         <canvas class="visualizer"></canvas>
                     </section>
-                    <!-- <section>
-                        <canvas class="visualizer"></canvas>
-                    </section> -->
                 </div>
                 
                 <div class="row">
                     <button type="button" class="btn btn-primary btn-lg xx js-play-btn mainButton"><i class="fa fa-camera " aria-hidden="true"></i> </button>
                     <button type="button" class="btn btn-primary btn-lg xy mainButton" ><i class="fas fa-video-slash "></i></button>                    
+                    
                     
 
                     <button class="js-record button button--record micButton" ><i class="fa fa-microphone" aria-hidden="true" style="width: -10px;"></i></button>
